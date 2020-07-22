@@ -1,0 +1,13 @@
+#navbarNav {
+  flex: 1;
+  justify-content: center;
+}
+
+.cover-img-container {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cover-img {
+  width: 100%;
+  max-height: 40vh;
+}
