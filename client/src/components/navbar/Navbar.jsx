@@ -23,13 +23,15 @@ const Navbar = () => {
       >
         <span className='navbar-toggler-icon'></span>
       </button>
-      <div className='collapse navbar-collapse' id='navbarNav'>
-        <ul className='navbar-nav'>
-          <li className='nav-item active'>
+      <div className='navbar-collapse collapse' id='navbarNav'>
+        <ul className='nav navbar-nav'>
+          <li className='nav-item'>
             <Link to='/' className='nav-link'>
               Home <span className='sr-only'>(current)</span>
             </Link>
           </li>
+        </ul>
+        <ul className='nav navbar-nav navbar-center'>
           <li className='nav-item'>
             <Link to='/civic' className='nav-link'>
               Civic
@@ -52,15 +54,22 @@ const Navbar = () => {
             >
               Frogo
             </Link>
-          </li>
-          <li className='nav-item'>
-            <Link to='/about' className='nav-link'>
-              About Me
-            </Link>
-          </li>
-          <li className='nav-item'>
+          </li>          
+        </ul>
+        <ul className='nav navbar-nav ml-auto'>
+        <li className='nav-item'>
             <Link to='/contact' className='nav-link'>
               Contact
+            </Link>
+          </li>
+          <li className='navbar-item'>
+            <Link to='/login' className='nav-link'>
+            <button className='btn btn-sm btn-success'>Log in</button>
+            </Link>
+          </li>
+          <li className='navbar-item'>
+            <Link to='/register' className='nav-link'>
+              <button className='btn btn-sm btn-primary'>Sign up</button>
             </Link>
           </li>
         </ul>

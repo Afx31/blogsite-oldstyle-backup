@@ -12,7 +12,7 @@ const User = require('../../models/User');
 // @desc    Register user
 // @access  Public
 router.post(
-  '/',
+  '/register',
   [
     check('name', 'Name is required').not().isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
@@ -23,7 +23,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
     const { name, email, password } = req.body;
 
     try {
@@ -35,9 +34,6 @@ router.post(
       }
 
       // ----- Get users gravatar -----
-      //s: String
-      //r: Rating
-      //d: Default
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
@@ -51,33 +47,31 @@ router.post(
         avatar,
         password
       });
-
-
       // ----- Encrpyt password -----
       const salt = await bcrypt.genSalt(10);
       // creating the hash
       user.password = await bcrypt.hash(password, salt);
       // save user in db
       await user.save();
+      res.status(201).json('User successfully registered');
 
       // create payload
-      const payload = {
-        user: {
-          id: user.id
-        }
-      };
+      // const payload = {
+      //   user: {
+      //     id: user.id
+      //   }
+      // }
 
       // token signing/sending back
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 36000 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
-      
+      // jwt.sign(
+      //   payload,
+      //   config.get('jwtSecret'),
+      //   { expiresIn: 36000 },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

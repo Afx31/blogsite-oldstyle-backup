@@ -27,7 +27,7 @@ router.get('/', auth, async (req, res) => {
 // @desc    Authenticate user & get token, aka: Login User
 // @access  Public
 router.post(
-  '/',
+  '/login',
   [
     check('email', 'Please include a valid email').isEmail(),
     check('password', 'Password is required').exists(),
@@ -37,7 +37,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
     const { email, password } = req.body;
 
     try {
@@ -55,24 +54,25 @@ router.post(
       if (!isMatch) {
         return res.status(400).json({errors: [{ msg: 'Invalid Credentails' }] });
       }
+      res.status(201).json("User successfully logged in");
 
-      // Create payload
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
+      // // Create payload
+      // const payload = {
+      //   user: {
+      //     id: user.id,
+      //   },
+      // };
 
-      // token signing/sending back
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 36000 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      // // token signing/sending back
+      // jwt.sign(
+      //   payload,
+      //   config.get('jwtSecret'),
+      //   { expiresIn: 36000 },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

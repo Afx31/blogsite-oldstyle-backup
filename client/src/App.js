@@ -6,6 +6,8 @@ import HomePage from './components/homepage/HomePage';
 import RegisterPage from './components/auth/RegisterPage.jsx';
 import LoginPage from './components/auth/LoginPage.jsx';
 
+import NotFound from './components/notfoundpage/NotFound';
+
 // Redux
 // import { Provider } from 'react-redux';
 // import store from './store';
@@ -16,12 +18,12 @@ function App() {
   return (
     // <Provider store={store}>
       <Router>
-        {/* <Navbar /> */}
+        <Navbar />
         <Switch>
-          {/* <Route exact path='/' component={HomePage} /> */}
-          <Route exact path='/' component={RegisterPage} />
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/register' component={RegisterPage} />
           <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/homepage' component={HomePage} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     // </Provider>

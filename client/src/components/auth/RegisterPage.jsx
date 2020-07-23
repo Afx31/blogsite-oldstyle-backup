@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { register } from '../../actions/auth';
 
 const RegisterPage = (props) => {
+  const [redirectPage, setRedirectPage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,22 +22,19 @@ const RegisterPage = (props) => {
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
 
     if (password !== confirmpassword) {
       // setAlert('Passwords do not match', 'danger');
       console.log('Passwords dont match!');
     } else {
-      register({ name, email, password });
-      console.log('User has been registered');
-      return <Redirect to='/homepage' />
+      const result = await register({ name, email, password });
+      if (result === 'success') {
+        setRedirectPage('/login');
+      };
     };
   };
-
-  // if (isAuthenticated) {
-  //   return <Redirect to='/homepage' />
-  // }
 
   return (
     <div className = 'register-container text-center'>
@@ -97,6 +95,7 @@ const RegisterPage = (props) => {
         </p>
         <p className='mt-5 mb-3 text-muted'>&copy; put something here</p>
       </form>
+      {redirectPage && <Redirect push to={redirectPage}/>}
     </div>
   );
 };

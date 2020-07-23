@@ -10,7 +10,7 @@ import axios from 'axios';
 //   LOGOUT,
 //   CLEAR_PROFILE
 // } from './types';
-import setAuthToken from '../utils/setAuthToken';
+//import setAuthToken from '../utils/setAuthToken';
 
 // Load User
 
@@ -24,27 +24,42 @@ export const register = async ({ name, email, password }) => {
   };
   const body = JSON.stringify({ name, email, password });
 
-  // dispatch({
-  //   type: REGISTER_SUCCESS,
-  //   payload: res.data,
-  // });
-
-  // dispatch(loadUser());
   try {
-    const res = await axios.post('/api/users', body, config);
+    await axios.post('/api/users/register', body, config);
+    console.log('User has been registered');  
+    return 'success';
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach((error) => console.log('Errors: ' + error));
     };
-    // dispatchEvent({
-    //   type: REGISTER_FAIL,
-    // });
   }
 };
 
 // Login User
+export const login = async ( email, password ) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify({ email, password });
+
+  try {
+    await axios.post('/api/auth/login', body, config);
+    return 'success';
+  } catch (err) {
+    //
+    // REWORK WITH REDUX?
+    //
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => console.log('Errors: ' + error));
+    };
+  }
+};
 
 
 // Logout / Clear Profiles
