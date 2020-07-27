@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './AuthPage.css';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
-const RegisterPage = (props) => {
+const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
   const [redirectPage, setRedirectPage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
@@ -22,19 +25,32 @@ const RegisterPage = (props) => {
     });
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-
     if (password !== confirmpassword) {
-      // setAlert('Passwords do not match', 'danger');
-      console.log('Passwords dont match!');
+      setAlert('Passwords do not match', 'danger');
     } else {
-      const result = await register({ name, email, password });
-      if (result === 'success') {
-        setRedirectPage('/login');
-      };
-    };
+      register({ name, email, password });
+    }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/login' />
+  };
+
+  // const onSubmit = async e => {
+  //   e.preventDefault();
+
+  //   if (password !== confirmpassword) {
+  //     setAlert('Passwords do not match', 'danger');
+  //     // console.log('Passwords dont match!');
+  //   } else {
+  //     const result = await register({ name, email, password });
+  //     if (result === 'success') {
+  //       setRedirectPage('/login');
+  //     };
+  //   };
+  // };
 
   return (
     <div className = 'register-container text-center'>
@@ -100,4 +116,14 @@ const RegisterPage = (props) => {
   );
 };
 
-export default RegisterPage;
+RegisterPage.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(RegisterPage);

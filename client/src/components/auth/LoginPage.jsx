@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './AuthPage.css';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 import { login } from '../../actions/auth';
 
-const LoginPage = (props) => {
+const LoginPage = ({ login, isAuthenticated }) => {
   const [redirectPage, setRedirectPage] = useState('');
   const [formData, setFormData] = useState({
     email: '',
@@ -21,11 +23,21 @@ const LoginPage = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const result = await login(email, password);
-    if (result === 'success') {
-      setRedirectPage('/');
-    }
+    login(email, password);
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />
+  }
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const result = await login(email, password);
+  //   if (result === 'success') {
+  //     setRedirectPage('/');
+  //   }
+  // };
 
   return (
     <div className = 'register-container text-center'>
@@ -78,4 +90,12 @@ const LoginPage = (props) => {
   )
 };
 
-export default LoginPage;
+LoginPage.propTypes = {
+  login: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(LoginPage);

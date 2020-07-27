@@ -1,0 +1,29 @@
+.container {
+  margin-top: 4rem;
+}
+
+/*  LEFT PANE  */
+.pane-left {
+  padding-top: 1rem;
+  border: 1px solid red;
+}
+
+.search-container {
+  padding-bottom: 1rem;
+}
+
+.dropdown-divider {
+  border: 1px solid lightgray;
+}
+
+.thread-post-links {
+  
+}
+
+
+
+/*  RIGHT PANE  */
+.pane-right {
+  padding-top: 1rem;
+  border: 1px solid green;
+}
