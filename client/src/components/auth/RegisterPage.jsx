@@ -7,7 +7,6 @@ import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
-  const [redirectPage, setRedirectPage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,27 +29,13 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
     if (password !== confirmpassword) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      await register({ name, email, password });
     }
   };
 
   if (isAuthenticated) {
     return <Redirect to='/login' />
   };
-
-  // const onSubmit = async e => {
-  //   e.preventDefault();
-
-  //   if (password !== confirmpassword) {
-  //     setAlert('Passwords do not match', 'danger');
-  //     // console.log('Passwords dont match!');
-  //   } else {
-  //     const result = await register({ name, email, password });
-  //     if (result === 'success') {
-  //       setRedirectPage('/login');
-  //     };
-  //   };
-  // };
 
   return (
     <div className = 'register-container text-center'>
@@ -111,7 +96,6 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
         </p>
         <p className='mt-5 mb-3 text-muted'>&copy; put something here</p>
       </form>
-      {redirectPage && <Redirect push to={redirectPage}/>}
     </div>
   );
 };

@@ -35,7 +35,7 @@ const PostsPage = () => {
         </div>
         <div className='col-8 pane-right'>
           <h1>Wakefield 1st August 2020, is it time to get a 1.09?</h1>
-          <img src={require("../../img/image1.jpg")} className="img-fluid cover-img" alt="Responsive image" />  
+          <img src={require("../../img/image1.jpg")} className="img-fluid cover-img" alt="Responsive" />  
           <p>
           top publishing packages and
             web page e

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import { login } from '../../actions/auth';
 
 const LoginPage = ({ login, isAuthenticated }) => {
-  const [redirectPage, setRedirectPage] = useState('');
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -28,16 +27,8 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />
-  }
-
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const result = await login(email, password);
-  //   if (result === 'success') {
-  //     setRedirectPage('/');
-  //   }
-  // };
+    return <Redirect to='/' />
+  };
 
   return (
     <div className = 'register-container text-center'>
@@ -85,7 +76,6 @@ const LoginPage = ({ login, isAuthenticated }) => {
         </p>
         <p className='mt-5 mb-3 text-muted'>&copy; put something here</p>
       </form>
-      {redirectPage && <Redirect push to={redirectPage}/>}
     </div>
   )
 };
