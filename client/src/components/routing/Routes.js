@@ -4,7 +4,7 @@ import PrivateRoute from '../routing/PrivateRoute';
 import RegisterPage from '../../components/auth/RegisterPage';
 import LoginPage from '../../components/auth/LoginPage';
 import Alert from '../../components/layout/Alert';
-import CreatePostPage from '../../components/posts/CreatePostPage';
+import CreatePostPage from '../../components/CreatePostPage/CreatePostPage';
 import PostsPage from '../../components/posts/PostsPage';
 import NotFound from '../../components/notfoundpage/NotFound';
 

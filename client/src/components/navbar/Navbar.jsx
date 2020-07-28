@@ -10,7 +10,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <ul className='nav navbar-nav ml-auto'>
       <li className='navbar-item'>
         <Link to='/create-post' className='nav-link'>
-          <button className='btn btn-sm btn-success' onClick={logout}>
+          <button className='btn btn-sm btn-success'>
             Create a Post
           </button>
         </Link>
