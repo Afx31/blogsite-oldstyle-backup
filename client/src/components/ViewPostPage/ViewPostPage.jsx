@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './ViewPostPage.css';
+import { connect } from 'react-redux';
+import { getPost } from '../../actions/post';
 
-const PostsPage = () => {
+export const ViewPostPage = ({ getPost }) => {
   return (
-    <div className='container'>
+    <div className='vpp-container'>
       <div className='row'>
         <div className='col-4 pane-left'>
           <form className='form-inline my-2 my-lg-0 search-container'>
@@ -35,16 +38,16 @@ const PostsPage = () => {
         </div>
         <div className='col-8 pane-right'>
           <h1>Wakefield 1st August 2020, is it time to get a 1.09?</h1>
-          <img src={require("../../img/image1.jpg")} className="img-fluid cover-img" alt="Responsive" />  
-          <p>
-          top publishing packages and
-            web page e
-            like).
-          </p>
+          <img
+            src={require('../../img/image1.jpg')}
+            className='img-fluid cover-img'
+            alt='Responsive'
+          />
+          <p>top publishing packages and web page e like.</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default PostsPage;
+export default connect(null, { getPost })(ViewPostPage);

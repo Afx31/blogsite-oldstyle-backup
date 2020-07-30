@@ -122,22 +122,11 @@ const CreatePostPage = ({ addPost }) => {
 
           <div className='dropdown-divider' />
 
-          {/* <label>heading: {heading}</label>
-          <br />
-          <label>car: {car}</label>
-          <br />
-          <label>type: {postType}</label>
-          <br />
-          <label>textarea: {content}</label>
-          <br />
-          <div className='dropdown-divider' /> */}
-
           <div>
             {formData2.map((data, index) => (
               <p key={index}>{data.postType} - {data.content}</p>
             ))}
           </div>
-
         </div>
       </div>
     </div>
