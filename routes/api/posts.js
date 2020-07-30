@@ -9,26 +9,18 @@ const Post = require('../../models/Post');
 // @desc    Create a post
 // @access  Private
 router.post(
-  '/',
-  [auth, [check('text', 'Text is required').not().isEmpty()]],
-  async (req, res) => {
+  '/add-post', async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    }
+    };
 
     try {
-      // const user = await user.findById(req.user.id).select('-password');
-
       // Create new Post object from the model Post
       const newPost = newPost({
         heading: req.body.text,
         car: req.body.car,
         // post[]
-        //
-        //
-        //
-        //
       });
 
       const post = await newPost.save();

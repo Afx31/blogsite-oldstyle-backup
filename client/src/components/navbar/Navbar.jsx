@@ -92,7 +92,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               <Link
                 to='/frogo'
                 className='nav-link disabled'
-                tabindex='-1'
+                tabIndex='-1'
                 aria-disabled='true'
               >
                 Frogo

@@ -1,17 +1,19 @@
 import axios from 'axios';
-import { ADD_POST, POST_ERROR } from '../actions/post';
+import { ADD_POST, POST_ERROR } from '../actions/types';
 // import { setAlert } from './alert';
 
 // Add a Post
-export const addPost = (formData) => async (dispatch) => {
+export const addPost = ({heading, car, formData}) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
+  const body = JSON.stringify({heading, car, formData});
+
   try {
-    const res = await axios.post('/api/posts/add-post', formData, config);
+    const res = await axios.post('/api/posts/add-post', body, config);
 
     dispatch({
       type: ADD_POST,

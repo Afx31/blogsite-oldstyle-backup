@@ -1,104 +1,63 @@
 import React, { useState } from 'react';
 import './CreatePostPage.css';
+import { connect } from 'react-redux';
+import { addPost } from '../../actions/post';
 
-const tempArr = {
-  postType: 'ree1',
-  content: 'ree2'
-};
+const CreatePostPage = ({ addPost }) => {
+  const [formData1, setFormData1] = useState({
+    heading: '',
+    car: '',
+  });
+  const [temp, setTemp] = useState({
+    postType: '',
+    content: '',
+  });
+  const [formData2, setFormData2] = useState([]);
 
-const CreatePostPage = () => {
-  const [heading, setHeading] = useState('');
-  const [formData, setFormData] = useState([
-    // {
-    //   postType: '',
-    //   content: '',
-    // }
-  ]);
-
-  // Deconstruct state for ease of access
-  const { postType, content } = formData;
-
-  const onChange = (e) => {
-    setFormData({
-      ...formData,
+  const handleFormData1Change = (e) => {
+    e.preventDefault();
+    setFormData1({
+      ...formData1,
       [e.target.name]: e.target.value,
     });
   };
 
-  const onSubmitHeading = async (e) => {
+  const handleFormData2Change = (e) => {
     e.preventDefault();
-    setFormData(formData => [...formData, tempArr]);
-    console.log(formData);
+    setTemp({
+      ...temp,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const onSubmitContent = async (e) => {
+  const onSubmitContent = (e) => {
     e.preventDefault();
+    setFormData2(formData2 => [...formData2, temp]);
+  };
+
+  const handleOverallSubmit = (e) => {
+    e.preventDefault();
+    addPost(formData1.heading, formData1.car, formData2);
   };
 
   return (
     <div className='cpp-container'>
       <div className='row'>
-
-
-
         <div className='col left-input my-auto'>
-          <button onClick={onSubmitHeading} type='submit' className='btn btn-danger' value='Submit Heading'>
-            Submit Heading
-          </button>
-          
-
-
-
-
-
           <h1>Create a new post</h1>
-          <form className='cpp-form-left' onSubmit={(e) => onSubmitHeading(e)}>
-            <div className='form-group'>
-              <label>Heading</label>
-              <input
-                type='text'
-                name='heading'
-                className='form-control'
-                placeholder='Enter a heading'
-                value={heading}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </div>
-            <div className='form-group'>
-              <label>Car</label>
-              <select
-                name='carType'
-                className='form-control'
-                onChange={(e) => onChange(e)}
-                required
-              >
-                <option disabled>--Select--</option>
-                <option>Civic</option>
-                <option>Wago</option>
-                <option>Frogo</option>
-              </select>
-            </div>
-            <button type='submit' className='btn btn-success' value='Submit Heading'>
-              Submit Heading
-            </button>
-          </form>
-          
-          <div className='dropdown-divider' />
-
-          <form className='cpp-form-left' onSubmit={(e) => onSubmitContent(e)}>
+          <form className='cpp-form-left'>
             <div className='form-group'>
               <label>Input type</label>
               <select
                 name='postType'
                 className='form-control'
-                onChange={(e) => onChange(e)}
+                onChange={(e) => handleFormData2Change(e)}
                 required
               >
                 <option disabled>--Select--</option>
-                <option>Text</option>
-                <option>Image</option>
-                <option>Link (YouTube)</option>
+                <option value='text'>Text</option>
+                <option value='image'>Image</option>
+                <option value='link'>Link (YouTube)</option>
               </select>
             </div>
             <div className='form-group'>
@@ -107,27 +66,82 @@ const CreatePostPage = () => {
                 name='content'
                 className='form-control'
                 rows='5'
-                onChange={(e) => onChange(e)}
-                value={content}
+                onChange={(e) => handleFormData2Change(e)}
+                value={temp.content}
                 required
               />
             </div>
-            <button type='submit' className='btn btn-success' value='Submit'>
+            <button type='submit' className='btn btn-success' value='Submit' onClick={(e) => onSubmitContent(e)}>
               Submit Content
             </button>
           </form>
 
           <div className='dropdown-divider' />
-          <button type='submit' className='btn btn-primary overallBtn' value='Overall Submit'>
+          <button
+            type='submit'
+            className='btn btn-primary overallBtn'
+            value='Overall Submit'
+            onClick={(e) => handleOverallSubmit(e)}
+          >
             Overall Submit
           </button>
         </div>
+
+
+
         <div className='col right-input'>
           <h1>Your Post</h1>
+          <form className='cpp-form-left'>
+            <div className='form-group'>
+              <label>Heading</label>
+              <input
+                type='text'
+                name='heading'
+                className='form-control'
+                placeholder='Enter a heading'
+                value={formData1.heading}
+                onChange={(e) => handleFormData1Change(e)}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label>Car</label>
+              <select
+                name='car'
+                className='form-control'
+                onChange={(e) => handleFormData1Change(e)}
+                required
+              >
+                <option disabled>--Select--</option>
+                <option value='civic'>Civic</option>
+                <option value='wago'>Wago</option>
+                <option value='frogo'>Frogo</option>
+              </select>
+            </div>
+          </form>
+
+          <div className='dropdown-divider' />
+
+          {/* <label>heading: {heading}</label>
+          <br />
+          <label>car: {car}</label>
+          <br />
+          <label>type: {postType}</label>
+          <br />
+          <label>textarea: {content}</label>
+          <br />
+          <div className='dropdown-divider' /> */}
+
+          <div>
+            {formData2.map((data, index) => (
+              <p key={index}>{data.postType} - {data.content}</p>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default CreatePostPage;
+export default connect(null, { addPost })(CreatePostPage);
