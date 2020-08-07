@@ -40,6 +40,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
+  // TEMP ID value to get to correct page
+  // Just load in all values  OR get by id to get the latest ID
+  const tempId = '5f22a26a123f3e357c953887';
+
   return (
     <>
       <div className='cover-img-container'>
@@ -74,7 +78,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </ul>
           <ul className='nav navbar-nav navbar-center'>
             <li className='nav-item'>
-              <Link to='/civic' className='nav-link'>
+              <Link to={`/civic/${tempId}`} className='nav-link'>
                 Civic
               </Link>
             </li>

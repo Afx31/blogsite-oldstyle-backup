@@ -14,9 +14,6 @@ router.post('/add-post', async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   };
 
-  console.log('---');
-  console.log(req.body)
-
   try {
     // Create new Post object from the model Post
     const newPost = new Post({
@@ -33,28 +30,27 @@ router.post('/add-post', async (req, res) => {
   }
 });
 
-// Is this actually needed? Need get all of specific car
-// @route   GET api/posts
+
+// @route   GET api/posts/postsByCar
 // @desc    Get all posts
 // @access  Private
-router.get('/', auth, async (req, res) => {
+router.get('/postsByCar/:car', auth, async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find({ "car": req.params.car });
+
+    console.log('** Posts Found **');
+
     res.json(posts);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json('Server error');
+    res.status(500).json('Server Error');
   }
 });
-
-// **
-// Get ALL posts for specific car
-//
 
 // @route   GET api/posts/:id
 // @desc    Get post by ID
 // @access  Private
-router.get('/:id', auth, async (req, res) => {
+router.get('/getPostById/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
@@ -73,6 +69,28 @@ router.get('/:id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+
+
+// Is this actually needed? Need get all of specific car
+// @route   GET api/posts
+// @desc    Get all posts
+// @access  Private
+// router.get('/', auth, async (req, res) => {
+//   try {
+//     const posts = await Post.find().sort({ date: -1 });
+//     res.json(posts);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).json('Server Error');
+//   }
+// });
+
+// **
+// Get ALL posts for specific car
+//
+
+
 
 // Create a post for specific car
 // Get a post by id for specific car

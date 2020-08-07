@@ -15,7 +15,7 @@ const Routes = () => {
       <Switch>
         <Route exact path='/register' component={RegisterPage} />
         <Route exact path='/login' component={LoginPage} />
-        <Route exact path='/civic' component={ViewPostPage} />
+        <Route exact path='/civic/:id' component={ViewPostPage} />
         <PrivateRoute exact path='/create-post' component={CreatePostPage} />
         <Route component={NotFound} />
       </Switch>

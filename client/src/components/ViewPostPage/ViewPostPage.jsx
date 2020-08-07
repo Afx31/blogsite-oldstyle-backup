@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ViewPostPage.css';
+import PostLinksMenu from './PostLinksMenu/PostLinksMenu';
+import PostContentBody from './PostContentBody/PostContentBody';
 import { connect } from 'react-redux';
-import { getPost } from '../../actions/post';
+import PropTypes from 'prop-types';
+import { getPostsByCar } from '../../actions/post';
 
-export const ViewPostPage = ({ getPost }) => {
+const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
+  const value = 'civic';
+
+  useEffect(() => {
+    getPostsByCar(value);
+  }, [getPostsByCar]);
+
   return (
     <div className='vpp-container'>
       <div className='row'>
@@ -23,31 +32,31 @@ export const ViewPostPage = ({ getPost }) => {
           <h5>RECENT POSTS</h5>
           <div className='thread-post-links'>
             <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-              <li>Link 6</li>
-              <li>Link 7</li>
-              <li>Link 8</li>
-              <li>Link 9</li>
-              <li>Link 10</li>
+              {posts.map((post) => (
+                <PostLinksMenu
+                  key={post._id}
+                  id={post._id}
+                  heading={post.heading}
+                />
+              ))}
             </ul>
           </div>
         </div>
         <div className='col-8 pane-right'>
-          <h1>Wakefield 1st August 2020, is it time to get a 1.09?</h1>
-          <img
-            src={require('../../img/image1.jpg')}
-            className='img-fluid cover-img'
-            alt='Responsive'
-          />
-          <p>top publishing packages and web page e like.</p>
+          <PostContentBody id={match.params.id} />
         </div>
       </div>
     </div>
   );
 };
 
-export default connect(null, { getPost })(ViewPostPage);
+ViewPostPage.propTypes = {
+  getPostsByCar: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+
+export default connect(mapStateToProps, { getPostsByCar })(ViewPostPage);

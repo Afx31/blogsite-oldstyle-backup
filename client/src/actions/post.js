@@ -1,28 +1,28 @@
 import axios from 'axios';
-import { GET_POSTS, GET_POST, ADD_POST, POST_ERROR } from '../actions/types';
-// import { setAlert } from './alert';
+import { GET_POST_NAME, GET_POST, ADD_POST, POST_ERROR } from '../actions/types';
+import { setAlert } from './alert';
 
-// Get Posts
-export const getPosts = () => async (dispatch) => {
+// Get All Post ID's/Headings for specific car
+export const getPostsByCar = (car) => async (dispatch) => {
   try {
-    const res = await axios.get('/api/posts');
+    const res = await axios.get(`/api/posts/postsByCar/${car}`);
 
     dispatch({
-      type: GET_POSTS,
-      payload: res.data,
+      type: GET_POST_NAME,
+      payload: res.data
     });
   } catch (err) {
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-  }
+  };
 };
 
-// Get Post
-export const getPost = (id) => async (dispatch) => {
+// Get Post by ID
+export const getPostById = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/posts/${id}`);
+    const res = await axios.get(`/api/posts/getPostById/${id}`);
 
     dispatch({
       type: GET_POST,
@@ -36,10 +36,8 @@ export const getPost = (id) => async (dispatch) => {
   }
 };
 
-
 // Add a Post
 export const addPost = (heading, car, formData) => async (dispatch) => {
-// export const addPost = async (heading, car, formData) =>   {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -56,7 +54,7 @@ export const addPost = (heading, car, formData) => async (dispatch) => {
       payload: res.data
     });
 
-    // dispatch(setAlert('Post Created', 'success'));
+    dispatch(setAlert('Post Created', 'success'));
   } catch (err) {
     dispatch({
       type: POST_ERROR,
