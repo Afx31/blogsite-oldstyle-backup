@@ -34,12 +34,9 @@ router.post('/add-post', async (req, res) => {
 // @route   GET api/posts/postsByCar
 // @desc    Get all posts
 // @access  Private
-router.get('/postsByCar/:car', auth, async (req, res) => {
+router.get('/postsByCar/:car', async (req, res) => {
   try {
-    const posts = await Post.find({ "car": req.params.car });
-
-    console.log('** Posts Found **');
-
+    const posts = await Post.find({ "car": req.params.car }).sort({ "date": -1 });
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -50,7 +47,7 @@ router.get('/postsByCar/:car', auth, async (req, res) => {
 // @route   GET api/posts/:id
 // @desc    Get post by ID
 // @access  Private
-router.get('/getPostById/:id', auth, async (req, res) => {
+router.get('/getPostById/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
@@ -69,6 +66,22 @@ router.get('/getPostById/:id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route   GET api/firstPostId/:car
+// @desc    Get latest post id for specific car
+// @access  Private
+router.get('/firstPostId/:car', async (req, res) => {
+  try {
+    const postId = await Post.find().sort({ '_id': -1 }).limit(1);
+    res.json(postId);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json('Server Error');
+  };
+});
+
+
+
 
 
 

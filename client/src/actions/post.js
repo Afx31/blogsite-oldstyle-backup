@@ -2,6 +2,16 @@ import axios from 'axios';
 import { GET_POST_NAME, GET_POST, ADD_POST, POST_ERROR } from '../actions/types';
 import { setAlert } from './alert';
 
+// Get latest Post ID for specific car to load that car's page
+export const getLinksFirstPostId = async (car) => {
+  try {
+    const res = await axios.get(`/api/posts/firstPostId/${car}`);
+    return res.data[0]._id;
+  } catch (err) {
+    console.error(err.message);
+  };
+};
+
 // Get All Post ID's/Headings for specific car
 export const getPostsByCar = (car) => async (dispatch) => {
   try {

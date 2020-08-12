@@ -5,7 +5,7 @@
 /*  LEFT PANE  */
 .pane-left {
   padding-top: 1rem;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .search-container {
@@ -25,5 +25,5 @@
 /*  RIGHT PANE  */
 .pane-right {
   padding-top: 1rem;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }

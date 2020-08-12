@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { getLinksFirstPostId } from '../../actions/post';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const tempId = '5f321c7548d0c42e987e409d';
+  // let tempId = '';
+
   const authLinks = (
     <ul className='nav navbar-nav ml-auto'>
       <li className='navbar-item'>
@@ -40,23 +44,26 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
-  // TEMP ID value to get to correct page
-  // Just load in all values  OR get by id to get the latest ID
-  const tempId = '5f22a26a123f3e357c953887';
+  // const getCarsFirstPostId = async (car) => {
+  //   const res = await getLinksFirstPostId(car);
+  //   console.log('===== UI testing ======')
+  //   console.log(res);
+  //   tempId = res;
+  // };
 
   return (
     <>
-      <div className='cover-img-container'>
+      {/* <div className='cover-img-container'>
         <img
           src={require('../../img/cover.jpg')}
           className='img-fluid cover-img'
           alt='Responsive'
         />
-      </div>
+      </div> */}
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        {/* <a className='navbar-brand' href='#'>
-        Navbar
-      </a> */}
+        {/* <button onClick={getCarsFirstPostId('civic')}>
+          button
+        </button> */}
         <button
           className='navbar-toggler'
           type='button'
@@ -72,23 +79,24 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
               <Link to='/' className='nav-link'>
+                <i class="fas fa-home"></i>
                 Home <span className='sr-only'>(current)</span>
               </Link>
             </li>
           </ul>
           <ul className='nav navbar-nav navbar-center'>
-            <li className='nav-item'>
+            <li>
               <Link to={`/civic/${tempId}`} className='nav-link'>
                 Civic
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/wago'
-                className='nav-link disabled'
-                tabIndex='-1'
-                aria-disabled='true'
-              >
+            {/* <li onClick={getCarsFirstPostId('civic')}>
+              <Link to={`/civic/${tempId}`} className='nav-link'>
+                Civic
+              </Link>
+            </li> */}            
+            <li>
+              <Link to={`/wago/${tempId}`} className='nav-link'>
                 Wago
               </Link>
             </li>
@@ -100,6 +108,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 aria-disabled='true'
               >
                 Frogo
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/frogo'
+                className='nav-link disabled'
+                tabIndex='-1'
+                aria-disabled='true'
+              >
+                EF9
               </Link>
             </li>
           </ul>

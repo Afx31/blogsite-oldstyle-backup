@@ -1,0 +1,17 @@
+.pcb-heading {
+  margin-bottom: 1rem;
+}
+
+.pcb-date {
+  margin-bottom: 2rem;
+  font-size: 13px;
+}
+
+.pcb-date-format {
+  font-weight: bold;
+}
+
+.pcb-img {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

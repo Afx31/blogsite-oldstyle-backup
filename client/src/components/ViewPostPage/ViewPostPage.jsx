@@ -16,7 +16,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
   return (
     <div className='vpp-container'>
       <div className='row'>
-        <div className='col-4 pane-left'>
+        <div className='col-3 pane-left'>
           <form className='form-inline my-2 my-lg-0 search-container'>
             <input
               className='form-control mr-sm-2'
@@ -25,7 +25,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
               aria-label='Search'
             />
             <button className='btn btn-danger my-2 my-sm-0' type='submit'>
-              Search
+              <i class="fas fa-search"></i>
             </button>
           </form>
           <div className='dropdown-divider' />
@@ -42,7 +42,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
             </ul>
           </div>
         </div>
-        <div className='col-8 pane-right'>
+        <div className='col-9 pane-right'>
           <PostContentBody id={match.params.id} />
         </div>
       </div>
