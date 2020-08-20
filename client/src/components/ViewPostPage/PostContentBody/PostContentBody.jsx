@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import './PostContentBody.css';
 import Moment from 'react-moment';
+import Spinner from '../../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPostById } from '../../../actions/post';
 
-const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => {
+const PostContentBody = ({
+  getPostById,
+  id,
+  post: { singlePost, loading },
+}) => {
   useEffect(() => {
     getPostById(id);
-  }, [getPostById]);
+  }, [getPostById, id]);
 
   const renderText = (content) => {
     return (
@@ -21,26 +26,31 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
   const renderImage = (content) => {
     return (
       <>
-        <img className='pcb-img' src={content} />
+        <img className='pcb-img' src={content} alt='post body content' />
       </>
     );
   };
 
   return loading || singlePost === null ? (
-    <h1>loading</h1>
+    <Spinner />
   ) : (
     <>
       <h1 className='pcb-heading'>{singlePost.heading}</h1>
       <p className='pcb-date'>
-        Posted on <Moment format='DD MMMM, YYYY' className='pcb-date-format'>{singlePost.date}</Moment>
+        Posted on{' '}
+        <Moment format='DD MMMM, YYYY' className='pcb-date-format'>
+          {singlePost.date}
+        </Moment>
       </p>
 
-      {singlePost.post.map(curr => {
+      {singlePost.post.map((curr) => {
         switch (curr.postType) {
           case 'text':
             return renderText(curr.content);
           case 'image':
             return renderImage(curr.content);
+          default:
+            console.log('Single Post loading error');
         }
       })}
     </>

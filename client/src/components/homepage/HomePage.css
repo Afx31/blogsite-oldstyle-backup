@@ -1,29 +1,20 @@
-.container {
-  margin-top: 4rem;
+.home-container {
+  margin-top: 1rem;
+  min-width: 100%;
 }
 
-/*  LEFT PANE  */
-.pane-left {
-  padding-top: 1rem;
-  /* border: 1px solid red; */
+.home-inner-container {
+  /* border: 0.5px solid green; */
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-.search-container {
-  padding-bottom: 1rem;
-}
-
-.dropdown-divider {
-  border: 1px solid lightgray;
-}
-
-.thread-post-links {
-  
-}
-
-
-
-/*  RIGHT PANE  */
-.pane-right {
-  padding-top: 1rem;
-  /* border: 1px solid green; */
+.home-card-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

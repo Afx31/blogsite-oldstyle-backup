@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './ViewPostPage.css';
 import PostLinksMenu from './PostLinksMenu/PostLinksMenu';
 import PostContentBody from './PostContentBody/PostContentBody';
@@ -7,11 +7,9 @@ import PropTypes from 'prop-types';
 import { getPostsByCar } from '../../actions/post';
 
 const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
-  const value = 'civic';
-
   useEffect(() => {
-    getPostsByCar(value);
-  }, [getPostsByCar]);
+    getPostsByCar(match.params.car);
+  }, [getPostsByCar, match.params.car]);
 
   return (
     <div className='vpp-container'>
@@ -25,7 +23,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
               aria-label='Search'
             />
             <button className='btn btn-danger my-2 my-sm-0' type='submit'>
-              <i class="fas fa-search"></i>
+              <i class='fas fa-search'></i>
             </button>
           </form>
           <div className='dropdown-divider' />
@@ -37,6 +35,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
                   key={post._id}
                   id={post._id}
                   heading={post.heading}
+                  car={match.params.car}
                 />
               ))}
             </ul>

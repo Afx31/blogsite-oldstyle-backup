@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PostLinksMenu = ({ id, heading }) => {  
+const PostLinksMenu = ({ id, heading, car }) => {  
   return (
     <>
       <li>
-        <Link to={`/civic/${id}`}>{heading}</Link>
+        <Link to={`/viewpost/${car}/${id}`}>{heading}</Link>
       </li>
     </>
   );

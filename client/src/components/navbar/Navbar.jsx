@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,8 +7,16 @@ import { logout } from '../../actions/auth';
 import { getLinksFirstPostId } from '../../actions/post';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const tempId = '5f321c7548d0c42e987e409d';
-  // let tempId = '';
+  const [civicLink, setCivicLink] = useState('');
+  const [wagoLink, setWagoLink] = useState('');
+
+  useEffect(() => {
+    async function fetchData() {
+      setCivicLink(await getLinksFirstPostId('civic'));
+      setWagoLink(await getLinksFirstPostId('wago'));
+    };
+    fetchData();
+  }, []);
 
   const authLinks = (
     <ul className='nav navbar-nav ml-auto'>
@@ -44,13 +52,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
-  // const getCarsFirstPostId = async (car) => {
-  //   const res = await getLinksFirstPostId(car);
-  //   console.log('===== UI testing ======')
-  //   console.log(res);
-  //   tempId = res;
-  // };
-
   return (
     <>
       {/* <div className='cover-img-container'>
@@ -61,9 +62,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         />
       </div> */}
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        {/* <button onClick={getCarsFirstPostId('civic')}>
-          button
-        </button> */}
         <button
           className='navbar-toggler'
           type='button'
@@ -86,17 +84,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </ul>
           <ul className='nav navbar-nav navbar-center'>
             <li>
-              <Link to={`/civic/${tempId}`} className='nav-link'>
+              <Link to={`/viewpost/civic/${civicLink}`} className='nav-link'>
                 Civic
               </Link>
-            </li>
-            {/* <li onClick={getCarsFirstPostId('civic')}>
-              <Link to={`/civic/${tempId}`} className='nav-link'>
-                Civic
-              </Link>
-            </li> */}            
+            </li>       
             <li>
-              <Link to={`/wago/${tempId}`} className='nav-link'>
+              <Link to={`/viewpost/wago/${wagoLink}`} className='nav-link'>
                 Wago
               </Link>
             </li>
@@ -110,13 +103,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 Frogo
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/frogo'
-                className='nav-link disabled'
-                tabIndex='-1'
-                aria-disabled='true'
-              >
+            <li>
+              <Link to={`/viewpost/ef9/${civicLink}`} className='nav-link'>
                 EF9
               </Link>
             </li>

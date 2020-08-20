@@ -12,23 +12,6 @@ export const getLinksFirstPostId = async (car) => {
   };
 };
 
-// Get All Post ID's/Headings for specific car
-export const getPostsByCar = (car) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/posts/postsByCar/${car}`);
-
-    dispatch({
-      type: GET_POST_NAME,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  };
-};
-
 // Get Post by ID
 export const getPostById = (id) => async (dispatch) => {
   try {
@@ -46,15 +29,45 @@ export const getPostById = (id) => async (dispatch) => {
   }
 };
 
+// Get All Post ID's/Headings for specific car
+export const getPostsByCar = (car) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/postsByCar/${car}`);
+
+    dispatch({
+      type: GET_POST_NAME,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  };
+};
+
+// Get Post bio data for homepage
+export const getPostBio = async () => {
+  try {
+    const res = await axios.get('/api/posts/getPostBio');
+
+    console.log('action:');
+    console.log(res.data);
+
+    return res.data;
+  } catch (err) {
+    console.log('Error' + err);
+  }
+};
+
 // Add a Post
-export const addPost = (heading, car, formData) => async (dispatch) => {
+export const addPost = (heading, car, thumbnail, description, formData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-
-  const body = JSON.stringify({heading, car, formData});
+  const body = JSON.stringify({heading, car, thumbnail, description, formData});
 
   try {
     const res = await axios.post('/api/posts/add-post', body, config);

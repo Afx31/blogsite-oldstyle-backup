@@ -1,0 +1,45 @@
+.card-container {
+  margin: 1rem;
+  position: relative;
+}
+
+.cd-img {
+  height: 340px;
+  width: 530px;
+  border-radius: 0.2rem;
+}
+
+.layer {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.2rem;
+}
+
+.inner-stuff {
+  position: absolute;
+  color: #fff;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inner-stuff p {
+  font-size: 20px;
+}
+
+.readmore-btn {
+  padding: 10px 20px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-decoration: none;
+}
+.readmore-btn:hover {
+  color: #000;
+  background-color: #fff;
+  transition: 0.3s ease-in-out;
+}
