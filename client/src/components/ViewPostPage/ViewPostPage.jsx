@@ -15,16 +15,8 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
     <div className='vpp-container'>
       <div className='row'>
         <div className='col-3 pane-left'>
-          <form className='form-inline my-2 my-lg-0 search-container'>
-            <input
-              className='form-control mr-sm-2'
-              type='search'
-              placeholder='Search...'
-              aria-label='Search'
-            />
-            <button className='btn btn-danger my-2 my-sm-0' type='submit'>
-              <i class='fas fa-search'></i>
-            </button>
+          <form className='form-inline my-2 my-lg-0'>
+            <h1>{match.params.car}</h1>
           </form>
           <div className='dropdown-divider' />
           <h5>RECENT POSTS</h5>

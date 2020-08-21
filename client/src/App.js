@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import HomePage from './components/homepage/HomePage';
-
+import Footer from './components/footer/Footer';
 import Routes from './components/routing/Routes';
 
 // Redux
@@ -32,6 +32,7 @@ const App = () => {
           <Route component={Routes} />
         </Switch>
       </Router>
+      <Footer />
     </Provider>
   );
 }

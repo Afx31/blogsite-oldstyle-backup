@@ -78,7 +78,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             <li className='nav-item'>
               <Link to='/' className='nav-link'>
                 <i class="fas fa-home"></i>
-                Home <span className='sr-only'>(current)</span>
+                {/* Home <span className='sr-only'>(current)</span> */}
               </Link>
             </li>
           </ul>
@@ -93,13 +93,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 Wago
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/frogo'
-                className='nav-link disabled'
-                tabIndex='-1'
-                aria-disabled='true'
-              >
+            <li>
+              <Link to={`/viewpost/frogo/${civicLink}`} className='nav-link'>
                 Frogo
               </Link>
             </li>

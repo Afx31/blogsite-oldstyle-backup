@@ -35,6 +35,10 @@ const CreatePostPage = ({ addPost }) => {
   const onSubmitContent = (e) => {
     e.preventDefault();
     setFormData2(formData2 => [...formData2, temp]);
+    setTemp({
+      ...temp,
+      content: ''
+    });
   };
 
   const handleOverallSubmit = (e) => {
@@ -56,7 +60,7 @@ const CreatePostPage = ({ addPost }) => {
                 onChange={(e) => handleFormData2Change(e)}
                 required
               >
-                <option disabled>--Select--</option>
+                <option disabled selected value>--Select--</option>
                 <option value='text'>Text</option>
                 <option value='image'>Image</option>
                 <option value='link'>Link (YouTube)</option>
@@ -73,7 +77,7 @@ const CreatePostPage = ({ addPost }) => {
                 required
               />
             </div>
-            <button type='submit' className='btn btn-success' value='Submit' onClick={(e) => onSubmitContent(e)}>
+            <button type='submit' className='btn btn-primary' value='Submit' onClick={(e) => onSubmitContent(e)}>
               Submit Content
             </button>
           </form>
@@ -81,11 +85,11 @@ const CreatePostPage = ({ addPost }) => {
           <div className='dropdown-divider' />
           <button
             type='submit'
-            className='btn btn-primary overallBtn'
+            className='btn btn-success overallBtn'
             value='Overall Submit'
             onClick={(e) => handleOverallSubmit(e)}
           >
-            Overall Submit
+            Create Post
           </button>
         </div>
 
@@ -114,7 +118,7 @@ const CreatePostPage = ({ addPost }) => {
                 onChange={(e) => handleFormData1Change(e)}
                 required
               >
-                <option disabled>--Select--</option>
+                <option disabled selected value>--Select--</option>
                 <option value='civic'>Civic</option>
                 <option value='wago'>Wago</option>
                 <option value='frogo'>Frogo</option>
