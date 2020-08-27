@@ -63,7 +63,7 @@ const CreatePostPage = ({ addPost }) => {
                 <option disabled selected value>--Select--</option>
                 <option value='text'>Text</option>
                 <option value='image'>Image</option>
-                <option value='link'>Link (YouTube)</option>
+                <option value='youtube'>YouTube</option>
               </select>
             </div>
             <div className='form-group'>

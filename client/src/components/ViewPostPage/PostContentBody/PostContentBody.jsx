@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import './PostContentBody.css';
 import Moment from 'react-moment';
+import ReactPlayer from 'react-player/youtube';
 import Spinner from '../../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPostById } from '../../../actions/post';
+import CommentForm from '../../comments/CommentForm';
+import CommentItem from '../../comments/CommentItem';
 
-const PostContentBody = ({
-  getPostById,
-  id,
-  post: { singlePost, loading },
-}) => {
+const PostContentBody = ({ getPostById, id, post: { singlePost, loading }, }) => {
   useEffect(() => {
     getPostById(id);
   }, [getPostById, id]);
@@ -31,6 +30,16 @@ const PostContentBody = ({
     );
   };
 
+  const renderYouTube = (content) => {
+    return (
+      <>
+        <div className='react-player-vid'>
+          <ReactPlayer url={content} />
+        </div>
+      </>
+    )
+  };
+
   return loading || singlePost === null ? (
     <Spinner />
   ) : (
@@ -43,16 +52,29 @@ const PostContentBody = ({
         </Moment>
       </p>
 
-      {singlePost.post.map((curr) => {
-        switch (curr.postType) {
-          case 'text':
-            return renderText(curr.content);
-          case 'image':
-            return renderImage(curr.content);
-          default:
-            console.log('Single Post loading error');
-        }
-      })}
+      <div className='pcb-content'>
+        {singlePost.post.map((curr) => {
+          switch (curr.postType) {
+            case 'text':
+              return renderText(curr.content);
+            case 'image':
+              return renderImage(curr.content);
+            case 'youtube':
+              return renderYouTube(curr.content);
+            default:
+              console.log('Single Post loading error');
+          }
+        })} 
+      </div>
+      
+      <hr className='pcb-dropdown-divider' />
+      <div className='comments'>
+        {singlePost.comments.map((comment) => (
+          <CommentItem key={comment._id} comment={comment} postId={id} />
+        ))}
+      </div>
+      <hr className='pcb-dropdown-divider' />
+      <CommentForm postId={id} />
     </>
   );
 };

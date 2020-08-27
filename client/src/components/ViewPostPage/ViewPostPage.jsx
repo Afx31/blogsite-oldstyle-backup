@@ -18,7 +18,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
           <form className='form-inline my-2 my-lg-0'>
             <h1>{match.params.car}</h1>
           </form>
-          <div className='dropdown-divider' />
+          <hr className='dropdown-divider'/>
           <h5>RECENT POSTS</h5>
           <div className='thread-post-links'>
             <ul>

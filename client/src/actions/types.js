@@ -17,3 +17,7 @@ export const GET_POST_NAME = 'GET_POST_NAME';
 export const GET_POST_BIO = 'GET_POST_BIO';
 export const ADD_POST = 'ADD_POST';
 export const POST_ERROR = 'POST_ERROR';
+
+// Comments
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';

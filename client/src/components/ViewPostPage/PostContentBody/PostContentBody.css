@@ -15,3 +15,18 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+.pcb-dropdown-divider {
+  margin:4rem 0;
+  border: 1px solid #2e2e2e;
+}
+
+.pcb-content {
+  /* border: 2px solid black; */
+}
+
+.react-player-vid {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
