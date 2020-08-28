@@ -6,8 +6,8 @@ import Spinner from '../../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPostById } from '../../../actions/post';
-import CommentForm from '../../comments/CommentForm';
-import CommentItem from '../../comments/CommentItem';
+import CommentForm from '../comments/CommentForm';
+import CommentItem from '../comments/CommentItem';
 
 const PostContentBody = ({ getPostById, id, post: { singlePost, loading }, }) => {
   useEffect(() => {

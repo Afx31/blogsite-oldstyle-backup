@@ -3,7 +3,7 @@ import './Comments.css';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import { deleteComment } from '../../actions/post';
+import { deleteComment } from '../../../actions/post';
 
 const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, avatar, user, date } }) => {
   return (

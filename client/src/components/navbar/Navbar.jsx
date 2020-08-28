@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import { getLinksFirstPostId } from '../../actions/post';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
   const [civicLink, setCivicLink] = useState('');
   const [wagoLink, setWagoLink] = useState('');
 
@@ -14,28 +14,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     async function fetchData() {
       setCivicLink(await getLinksFirstPostId('civic'));
       setWagoLink(await getLinksFirstPostId('wago'));
-    };
+    }
     fetchData();
   }, []);
-
-  const authLinks = (
-    <ul className='nav navbar-nav ml-auto'>
-      <li className='navbar-item'>
-        <Link to='/create-post' className='nav-link'>
-          <button className='btn btn-sm btn-success'>
-            Create a Post
-          </button>
-        </Link>
-      </li>
-      <li className='navbar-item'>
-        <Link to='/' className='nav-link'>
-          <button className='btn btn-sm btn-primary' onClick={logout}>
-            Logout
-          </button>
-        </Link>
-      </li>
-    </ul>
-  );
 
   const guestLinks = (
     <ul className='nav navbar-nav ml-auto'>
@@ -47,6 +28,36 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li className='navbar-item'>
         <Link to='/register' className='nav-link'>
           <button className='btn btn-sm btn-primary'>Sign up</button>
+        </Link>
+      </li>
+    </ul>
+  );
+
+  const userLinks = (
+    <ul className='nav navbar-nav ml-auto'>
+      <li className='navbar-item'>
+        <Link to='/profile' className='nav-link'>
+          <button className='btn btn-sm btn-success'>Profile</button>
+        </Link>
+      </li>
+      <li className='navbar-item'>
+        <Link to='/' className='nav-link'>
+          <button className='btn btn-sm btn-primary' onClick={logout}>Logout</button>
+        </Link>
+      </li>
+    </ul>
+  );
+
+  const adminLinks = (
+    <ul className='nav navbar-nav ml-auto'>
+      <li className='navbar-item'>
+        <Link to='/create-post' className='nav-link'>
+          <button className='btn btn-sm btn-success'>Create a Post</button>
+        </Link>
+      </li>
+      <li className='navbar-item'>
+        <Link to='/' className='nav-link'>
+          <button className='btn btn-sm btn-primary' onClick={logout}>Logout</button>
         </Link>
       </li>
     </ul>
@@ -77,7 +88,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
               <Link to='/' className='nav-link'>
-                <i class="fas fa-home"></i>
+                <i className='fas fa-home fa-2x'></i>
                 {/* Home <span className='sr-only'>(current)</span> */}
               </Link>
             </li>
@@ -87,7 +98,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               <Link to={`/viewpost/civic/${civicLink}`} className='nav-link'>
                 Civic
               </Link>
-            </li>       
+            </li>
             <li>
               <Link to={`/viewpost/wago/${wagoLink}`} className='nav-link'>
                 Wago
@@ -104,7 +115,14 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               </Link>
             </li>
           </ul>
-          {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
+          {!loading && (
+            <>
+              {' '}
+              {isAuthenticated && user.userType === 'admin' ? adminLinks
+                : isAuthenticated && user.userType === 'user' ? userLinks
+                : guestLinks}{' '}
+            </>
+          )}
         </div>
       </nav>
     </>

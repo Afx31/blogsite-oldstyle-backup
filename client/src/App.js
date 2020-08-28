@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/homepage/HomePage';
-import Footer from './components/footer/Footer';
+import Footer from './components/Footer/Footer';
 import Routes from './components/routing/Routes';
+
+// Scroll to top of page button on bottom right corner of the screen
+import ScrollTopArrow from './components/layout/ScrollTopArrow';
 
 // Redux
 //   Provider connects React & Redux
@@ -32,6 +35,7 @@ const App = () => {
           <Route component={Routes} />
         </Switch>
       </Router>
+      <ScrollTopArrow />
       <Footer />
     </Provider>
   );

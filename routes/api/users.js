@@ -28,6 +28,7 @@ router.post(
     }
 
     const { name, email, password } = req.body;
+    const userType = 'user';
 
     try {
       // ----- See if user exists -----
@@ -53,7 +54,8 @@ router.post(
         name,
         email,
         avatar,
-        password
+        password,
+        userType
       });
 
 

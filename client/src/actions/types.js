@@ -11,6 +11,11 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 
+// export const CLEAR_USER = 'CLEAR_USER';
+// export const USER_ERROR = 'USER_ERROR';
+export const USER_DELETED = 'USER_DELETED';
+
+
 // Posts
 export const GET_POST  = 'GET_POST';
 export const GET_POST_NAME = 'GET_POST_NAME';

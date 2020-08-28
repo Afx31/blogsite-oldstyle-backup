@@ -50,10 +50,6 @@ export const getPostsByCar = (car) => async (dispatch) => {
 export const getPostBio = async () => {
   try {
     const res = await axios.get('/api/posts/getPostBio');
-
-    console.log('action:');
-    console.log(res.data);
-
     return res.data;
   } catch (err) {
     console.log('Error' + err);

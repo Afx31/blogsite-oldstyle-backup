@@ -6,6 +6,7 @@ import LoginPage from '../../components/auth/LoginPage';
 import Alert from '../../components/layout/Alert';
 import CreatePostPage from '../../components/CreatePostPage/CreatePostPage';
 import ViewPostPage from '../../components/ViewPostPage/ViewPostPage';
+import Profile from '../../components/Profile/Profile';
 import NotFound from '../../components/notfoundpage/NotFound';
 
 const Routes = () => {
@@ -17,6 +18,7 @@ const Routes = () => {
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/viewpost/:car/:id' component={ViewPostPage} />
         <PrivateRoute exact path='/create-post' component={CreatePostPage} />
+        <PrivateRoute exact path='/profile' component={Profile} />
         <Route component={NotFound} />
       </Switch>
     </section>

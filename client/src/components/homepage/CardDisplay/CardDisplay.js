@@ -6,7 +6,7 @@ const CardDisplay = ({ id, car, thumbnail, heading, description }) => {
   return (
     <>
       <div className='card-container'>
-        <div class='layer' />
+        <div className='layer' />
         <img className='cd-img' src={thumbnail} alt='thumbnail' />
         <div className='inner-stuff'>
           <h1>{heading}</h1>

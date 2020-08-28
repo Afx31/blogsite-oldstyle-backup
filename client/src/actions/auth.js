@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  USER_DELETED
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -100,4 +101,27 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+};
+
+// Edit user info
+export const editUser = () => async (dispatch) => {
+  //
+  // NEED TO ADD EDITUSER FROM HERE ON, NO BACKEND HAS BEEN DONE
+  //
+};
+
+// Delete User
+export const deleteUser = () => async (dispatch) => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      await axios.delete('/api/auth/deleteUser');
+
+      dispatch({ type: USER_DELETED });
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
+  }
 };

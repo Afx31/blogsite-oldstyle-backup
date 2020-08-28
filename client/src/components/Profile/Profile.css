@@ -1,0 +1,32 @@
+.profile-container {
+  min-width: 100%;
+}
+
+.profile-inner-container {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-inner-container h1, .form-submit {
+  text-align: center;
+}
+
+.profile-inner-container .btn {
+  align-items: center;
+}
+
+.form .form-group{
+  margin-bottom: 1rem; 
+}
+
+.form input[type='text'],
+.form input[type='email'] {
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+.profile-container .btn {
+  padding: 0.4rem 1.3rem;
+}
