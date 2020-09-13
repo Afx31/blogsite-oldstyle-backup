@@ -9,7 +9,7 @@ import { getPostById } from '../../../actions/post';
 import CommentForm from '../comments/CommentForm';
 import CommentItem from '../comments/CommentItem';
 
-const PostContentBody = ({ getPostById, id, post: { singlePost, loading }, }) => {
+const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => {
   useEffect(() => {
     getPostById(id);
   }, [getPostById, id]);
@@ -73,7 +73,6 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading }, }) =>
           <CommentItem key={comment._id} comment={comment} postId={id} />
         ))}
       </div>
-      <hr className='pcb-dropdown-divider' />
       <CommentForm postId={id} />
     </>
   );

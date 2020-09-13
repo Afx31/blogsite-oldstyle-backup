@@ -17,15 +17,19 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
         <p className='post-date'>
           Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
         </p>
-        {/* {!auth.loading && user === auth.user._id && (
-          <button
-            type='button'
-            className='btn btn-danger'
-            onClick={(e) => deleteComment(postId, _id)}
-          >
-            <i className='fas fa-times' />
-          </button>
-        )} */}
+        {auth.isAuthenticated && (
+          <>
+            {user === auth.user._id && 
+              <button
+              type='button'
+              className='btn btn-danger'
+              onClick={(e) => deleteComment(postId, _id)}
+            >
+              <i className='fas fa-times' />
+            </button>
+            }
+          </>
+        )}
       </div>
     </div>
   );

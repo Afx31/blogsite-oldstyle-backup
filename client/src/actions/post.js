@@ -97,6 +97,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
       type: ADD_COMMENT,
       payload: res.data
     });
+    
     dispatch(setAlert('Comment Added', 'success'));
   } catch (err) {
     dispatch({
@@ -120,7 +121,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: {msg: err.response.statusText, status: err.response.status}
+      payload: { msg: err.response.statusText, status: err.response.status }
     })
   }
 };

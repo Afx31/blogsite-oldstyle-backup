@@ -4,8 +4,6 @@ import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/homepage/HomePage';
 import Footer from './components/Footer/Footer';
 import Routes from './components/routing/Routes';
-
-// Scroll to top of page button on bottom right corner of the screen
 import ScrollTopArrow from './components/layout/ScrollTopArrow';
 
 // Redux

@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  USER_UPDATED,
   USER_DELETED
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
@@ -22,7 +23,7 @@ export const loadUser = () => async (dispatch) => {
 
   try {
     const res = await axios.get('/api/auth');
-
+    
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -41,10 +42,11 @@ export const register = ({ name, email, password }) => async (dispatch) => {
       'Content-Type': 'application/json',
     },
   };
+
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post('/api/users/register', body, config);
+    const res = await axios.post('/api/users', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -72,17 +74,19 @@ export const login = (email, password) => async (dispatch) => {
       'Content-Type': 'application/json',
     },
   };
+
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/api/auth/login', body, config);
-
+    const res = await axios.post('/api/auth', body, config);
+    
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-
+    
     dispatch(loadUser());
+    
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -104,17 +108,44 @@ export const logout = () => (dispatch) => {
 };
 
 // Edit user info
-export const editUser = () => async (dispatch) => {
-  //
-  // NEED TO ADD EDITUSER FROM HERE ON, NO BACKEND HAS BEEN DONE
-  //
+export const editUser = (name, email, currentPassword, newPassword) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const body = JSON.stringify({ name, email, currentPassword, newPassword });
+  
+  try {
+    const res = await axios.post('/api/users/editUser', body, config);
+
+    dispatch({
+      type: USER_UPDATED,
+      payload: res.data
+    });
+  
+    // dispatch(loadUser());
+
+    dispatch(setAlert('User Updated', 'success'));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    // dispatch({
+    //   type: AUTH_ERROR,
+    //   payload: { msg: err.response.statusText, status: err.response.status }
+    // });
+  }
 };
 
 // Delete User
 export const deleteUser = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await axios.delete('/api/auth/deleteUser');
+      await axios.delete('/api/users/deleteUser');
 
       dispatch({ type: USER_DELETED });
     } catch (err) {

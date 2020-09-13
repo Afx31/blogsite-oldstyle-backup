@@ -65,13 +65,13 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
 
   return (
     <>
-      {/* <div className='cover-img-container'>
-        <img
-          src={require('../../img/cover.jpg')}
+      <div className='cover-img-container'>
+        {/* <img
+          src={require('../../img/cover2.png')}
           className='img-fluid cover-img'
           alt='Responsive'
-        />
-      </div> */}
+        /> */}
+      </div>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
         <button
           className='navbar-toggler'
@@ -115,6 +115,7 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
               </Link>
             </li>
           </ul>
+          {/* {!loading && <>{isAuthenticated ? userLinks : guestLinks}</>} */}
           {!loading && (
             <>
               {' '}

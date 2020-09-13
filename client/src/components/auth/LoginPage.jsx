@@ -31,57 +31,48 @@ const LoginPage = ({ login, isAuthenticated }) => {
   };
 
   return (
-    <div className = 'register-container text-center'>
-      <form className='form-signin' onSubmit={(e) => onSubmit(e)}>
-        <img
-          className='mb-4'
-          src = {require('./bootstrap-solid.svg')}
-          alt=''
-          width='72'
-          height='72'
+    <form className='form-signin text-center' onSubmit={(e) => onSubmit(e)}>
+      <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
+      <div className='form-group'>
+        <input
+          type='email'
+          name='email'
+          placeholder='Email address'
+          className='form-control'
+          value={email}
+          onChange={(e) => onChange(e)}
+          required
         />
-        <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
-        <div className='form-group'>
-          <input
-            type='email'
-            name='email'
-            placeholder='Email address'
-            className='form-control'
-            value={email}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className='form-group'>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            className='form-control'
-            value={password}
-            onChange={(e) => onChange(e)}
-            required
-          />
-        </div>
-        <div className='checkbox mb-3'>
-          <label>
-            <input type='checkbox' value='remember-me' /> Remember me
-          </label>
-        </div>
-        <button type='submit' className='btn btn-lg btn-primary btn-block' value='Login' >
-          Login
-        </button>        
-        <p className=''>
-          Don't have an account? <Link to='/register'>Sign up</Link>
-        </p>
-        <p className='mt-5 mb-3 text-muted'>&copy; put something here</p>
-      </form>
-    </div>
+      </div>
+      <div className='form-group'>
+        <input
+          type='password'
+          name='password'
+          placeholder='Password'
+          className='form-control'
+          value={password}
+          onChange={(e) => onChange(e)}
+          required
+        />
+      </div>
+      <div className='checkbox mb-3'>
+        <label>
+          <input type='checkbox' value='remember-me' /> Remember me
+        </label>
+      </div>
+      <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Login' >
+        Login
+      </button>        
+      <p className='auth-alternative'>
+        Don't have an account? <Link to='/register'>Sign up</Link>
+      </p>
+    </form>
   )
 };
 
 LoginPage.propTypes = {
   login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
