@@ -37,16 +37,12 @@ export default function(state = initialState, action) {
         loading: false,
         user: payload
       };
-
-      case USER_UPDATED:
-        return {
-          ...state,
-          ...payload,
-          isAuthenticated: true,
-          loading: false,
-          // user: payload
-        };
-
+    case USER_UPDATED:
+      return {
+        ...state,
+        loading: false,
+        user: payload
+      };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
     case AUTH_ERROR:

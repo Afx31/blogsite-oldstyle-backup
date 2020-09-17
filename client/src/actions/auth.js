@@ -93,8 +93,6 @@ export const editUser = (name, email, currentPassword, newPassword) => async (di
       type: USER_UPDATED,
       payload: res.data
     });
-  
-    dispatch(loadUser());
     dispatch(setAlert('User Updated', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
