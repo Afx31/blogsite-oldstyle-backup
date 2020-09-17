@@ -1,11 +1,11 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { GET_POST_NAME, GET_POST, ADD_POST, POST_ERROR, ADD_COMMENT, REMOVE_COMMENT } from '../actions/types';
 import { setAlert } from './alert';
 
 // GET latest Post ID for specific car to load that car's page
 export const getLinksFirstPostId = async (car) => {
   try {
-    const res = await axios.get(`/api/posts/firstPostId/${car}`);
+    const res = await api.get(`/posts/firstPostId/${car}`);
     return res.data[0]._id;
   } catch (err) {
     console.error(err.message);
@@ -15,7 +15,7 @@ export const getLinksFirstPostId = async (car) => {
 // GET Post by ID
 export const getPostById = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/posts/getPostById/${id}`);
+    const res = await api.get(`/posts/getPostById/${id}`);
 
     dispatch({
       type: GET_POST,
@@ -32,7 +32,7 @@ export const getPostById = (id) => async (dispatch) => {
 // GET All Post ID's/Headings for specific car
 export const getPostsByCar = (car) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/posts/postsByCar/${car}`);
+    const res = await api.get(`/posts/postsByCar/${car}`);
 
     dispatch({
       type: GET_POST_NAME,
@@ -49,7 +49,7 @@ export const getPostsByCar = (car) => async (dispatch) => {
 // GET Post bio data for homepage
 export const getPostBio = async () => {
   try {
-    const res = await axios.get('/api/posts/getPostBio');
+    const res = await api.get('/posts/getPostBio');
     return res.data;
   } catch (err) {
     console.log('Error' + err);
@@ -66,7 +66,7 @@ export const addPost = (heading, car, thumbnail, description, formData) => async
   const body = JSON.stringify({heading, car, thumbnail, description, formData});
 
   try {
-    const res = await axios.post('/api/posts/add-post', body, config);
+    const res = await api.post('/posts/add-post', body, config);
 
     dispatch({
       type: ADD_POST,
@@ -91,7 +91,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
   }
   
   try {
-    const res = await axios.post(`/api/posts/addComment/${postId}`, formData, config);
+    const res = await api.post(`/posts/addComment/${postId}`, formData, config);
 
     dispatch({
       type: ADD_COMMENT,
@@ -110,7 +110,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // DELETE Comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
-    await axios.delete(`/api/posts/deleteComment/${postId}/${commentId}`);
+    await api.delete(`/posts/deleteComment/${postId}/${commentId}`);
 
     dispatch({
       type: REMOVE_COMMENT,
