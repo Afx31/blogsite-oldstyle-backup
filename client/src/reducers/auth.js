@@ -35,7 +35,7 @@ export default function(state = initialState, action) {
         ...payload,
         isAuthenticated: true,
         loading: false,
-        // user: payload
+        user: payload
       };
 
       case USER_UPDATED:
