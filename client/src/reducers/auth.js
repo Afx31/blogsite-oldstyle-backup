@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload
-      }
+      };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
     case USER_UPDATED:
@@ -37,14 +37,11 @@ export default function(state = initialState, action) {
         ...payload,
         isAuthenticated: true,
         loading: false,
-        user: payload
+        // user: payload
       };
-
-
-
     case REGISTER_FAIL:
     case LOGIN_FAIL:
-      // case AUTH_ERROR:    
+      // case AUTH_ERROR:
     case USER_DELETED:
       localStorage.removeItem('token');
       return {
@@ -56,6 +53,7 @@ export default function(state = initialState, action) {
       };
     case AUTH_ERROR:
     case LOGOUT:
+      localStorage.removeItem('token');
       return {
         ...state,
         token: null,
