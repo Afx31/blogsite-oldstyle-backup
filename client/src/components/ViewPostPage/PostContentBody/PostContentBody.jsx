@@ -25,7 +25,7 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
   const renderImage = (content) => {
     return (
       <>
-        <img className='pcb-img' src={content} alt='post body content' />
+        <img className='pcb-img img-fluid' src={content} alt='post body content' />
       </>
     );
   };

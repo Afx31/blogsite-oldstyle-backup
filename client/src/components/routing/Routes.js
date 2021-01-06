@@ -7,7 +7,7 @@ import Alert from '../../components/layout/Alert';
 import CreatePostPage from '../../components/CreatePostPage/CreatePostPage';
 import ViewPostPage from '../../components/ViewPostPage/ViewPostPage';
 import Profile from '../../components/Profile/Profile';
-import NotFound from '../../components/notfoundpage/NotFound';
+import NotFound from '../../components/NotFoundPage/NotFound';
 
 const Routes = () => {
   return (

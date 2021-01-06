@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './ViewPostPage.css';
 import PostLinksMenu from './PostLinksMenu/PostLinksMenu';
 import PostContentBody from './PostContentBody/PostContentBody';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
@@ -11,6 +12,10 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
   useEffect(() => {
     getPostsByCar(match.params.car);
   }, [getPostsByCar, match.params.car]);
+
+  const handleSelectChange = (e) => (
+    <Redirect to={`/viewpost/${match.params.car}/${e.target.value}`} />
+  )
 
   return loading || posts === null ? (
     <Spinner />
@@ -35,6 +40,20 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
                   />
                 ))}
               </ul>
+            </div>
+          </div>
+          <div className='mobile-pane-left'>
+            <form className='form-inline my-2 my-lg-0'>
+              <h1>{match.params.car}</h1>
+            </form>
+            <hr className='dropdown-divider'/>
+            <h5>RECENT POSTS</h5>
+            <div className='thread-post-links'>
+              <select onChange={(e) => handleSelectChange(e)}>
+                {posts.map((post) => (
+                  <option value={post._id}>{post.heading}</option>
+                ))}
+              </select>
             </div>
           </div>
           <div className='col-9 pane-right'>

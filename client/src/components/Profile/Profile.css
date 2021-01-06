@@ -8,7 +8,7 @@
   margin-right: auto;
 }
 
-.profile-inner-container h1, .form-submit {
+.form-submit {
   text-align: center;
 }
 
@@ -16,19 +16,11 @@
   align-items: center;
 }
 
-.form .form-group{
-  margin-bottom: 1rem; 
-}
-
 .form input[type='text'],
 .form input[type='email'] {
   padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
-}
-
-.profile-container .btn {
-  padding: 0.4rem 1.3rem;
 }
 
 .avatar-img {

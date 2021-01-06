@@ -7,8 +7,13 @@
   padding-top: 1rem;
 }
 
-.pane-left h1 {
+.pane-left h1, .mobile-pane-left h1 {
   text-transform: uppercase;
+}
+
+.mobile-pane-left {
+  display: none;
+  padding-left: 16px;
 }
 
 .dropdown-divider {
@@ -18,4 +23,22 @@
 /*  RIGHT PANE  */
 .pane-right {
   padding-top: 1rem;
+}
+
+@media (max-width: 960px) {
+  .pane-left {
+    display: none;
+  }
+
+  .mobile-pane-left {
+    display: inline-block;
+  }
+
+  .pane-right {
+    min-width: 100%;
+  }
+
+  .container {
+    /* align-items: center; */
+  }
 }

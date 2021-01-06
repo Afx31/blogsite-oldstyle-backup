@@ -7,7 +7,7 @@ const CardDisplay = ({ id, car, thumbnail, heading, description }) => {
     <>
       <div className='card-container'>
         <div className='layer' />
-        <img className='cd-img' src={thumbnail} alt='thumbnail' />
+        <img className='cd-img img-fluid' src={thumbnail} alt='thumbnail' />
         <div className='inner-stuff'>
           <h1>{heading}</h1>
           <p>{description}</p>

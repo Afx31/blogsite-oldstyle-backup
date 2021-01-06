@@ -65,31 +65,24 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
 
   return (
     <>
-      <div className='cover-img-container'>
-        {/* <img
-          src={require('../../img/cover2.png')}
-          className='img-fluid cover-img'
-          alt='Responsive'
-        /> */}
-      </div>
+      <div className='cover-img-container'></div>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
         <button
           className='navbar-toggler'
           type='button'
           data-toggle='collapse'
-          data-target='#navbarNav'
-          aria-controls='navbarNav'
+          data-target='#navbarCollapse'
+          aria-controls='navbarCollapse'
           aria-expanded='false'
           aria-label='Toggle navigation'
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        <div className='navbar-collapse collapse' id='navbarNav'>
+        <div className='navbar-collapse collapse' id='navbarCollapse'>
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
               <Link to='/' className='nav-link'>
                 <i className='fas fa-home fa-2x'></i>
-                {/* Home <span className='sr-only'>(current)</span> */}
               </Link>
             </li>
           </ul>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -46,41 +45,31 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    
+
     if (newPassword1 !== newPassword2) {
       setAlert('New passwords do not match', 'danger');
     } else if (pwdChange === true) {
-      if (newPassword1.length <= 5 || newPassword2.length <= 5) {
+      if (!newPassword1 || !newPassword2) {
+        setAlert('Please fill in empty fields', 'danger');
+      } else if (newPassword1.length <= 5 || newPassword2.length <= 5) {
         setAlert('Please enter a new password with 6 or more characterssss', 'danger');
       } else {
         editUser(name, email, currentPassword, newPassword1);
-        return <Redirect to='/' />
       }
     } else {
       editUser(name, email, currentPassword, newPassword1);
-      return <Redirect to='/' />
     }
   };
-
-  //
-  //
-  //  use history to then redirect ^^  
-  // return { success: true } (actions_)
-  //  login(email, password).then(({success}) ={ 
-  //    if (success) history.push('/dashboard');
-  //  })
-  //
 
   return (
     <div className='profile-container'>
       <div className='profile-inner-container'>
-        <h1>Profile: </h1>
         <div className='avatar-img text-center'>
           <img className='profile-round-img' src={user.avatar} alt='' />
         </div>
         <form className='form' onSubmit={(e) => handleOnSubmit(e)}>
           <div className='form-group'>
-          <label>Name:</label>
+            <label>Name:</label>
             <input
               type='text'
               name='name'
@@ -88,6 +77,7 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
               value={name}
               className='form-control'
               onChange={(e) => handleInputChange(e)}
+              required
             />
           </div>
           <div className='form-group'>
@@ -99,6 +89,7 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
               value={email}
               className='form-control'
               onChange={(e) => handleInputChange(e)}
+              required
             />
           </div>        
           <div className='form-group'>        
@@ -110,17 +101,18 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
               value={currentPassword}
               className='form-control'
               onChange={(e) => handleInputChange(e)}
+              required
             />
           </div>
-          <div className='form-group'>
+          <div className='form-group mt-5 text-center'>
             <label>If you want to update your password fill out the form below, else leave it blank</label>
             <button 
               type='button'
               name='checkPasswordChange'              
-              className='form-control'
+              className='form-control btn-info btn-sm'
               onClick={(e) => handleCheckboxChange(e)}
             >
-              Checkbox
+              Change Password
             </button>
           </div>
           <div className='form-group'>

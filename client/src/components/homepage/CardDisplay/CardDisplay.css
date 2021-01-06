@@ -43,3 +43,13 @@
   background-color: #fff;
   transition: 0.3s ease-in-out;
 }
+
+@media (max-width: 960px) {
+  .cd-img {
+    /* height: 240px;
+    width: 330px; */
+  }
+  .card-container {
+    min-width: 100%;
+  }
+}
