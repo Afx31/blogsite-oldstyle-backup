@@ -29,4 +29,5 @@
 
 .comments {
   margin-bottom: 3rem;
+  word-wrap: break-word;
 }

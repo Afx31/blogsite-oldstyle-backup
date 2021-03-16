@@ -15,19 +15,11 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
   }, [getPostById, id]);
 
   const renderText = (content) => {
-    return (
-      <>
-        <p>{content}</p>
-      </>
-    );
+    return ( <> <p>{content}</p> </> );
   };
 
   const renderImage = (content) => {
-    return (
-      <>
-        <img className='pcb-img img-fluid' src={content} alt='post body content' />
-      </>
-    );
+    return ( <> <img className='pcb-img img-fluid' src={content} alt='post body content' /> </> );
   };
 
   const renderYouTube = (content) => {
@@ -53,7 +45,7 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
       </p>
 
       <div className='pcb-content'>
-        {singlePost.post.map((curr) => {
+        {singlePost.post.map(curr => {
           switch (curr.postType) {
             case 'text':
               return renderText(curr.content);

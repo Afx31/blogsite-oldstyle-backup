@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ViewPostPage.css';
 import PostLinksMenu from './PostLinksMenu/PostLinksMenu';
 import PostContentBody from './PostContentBody/PostContentBody';
@@ -7,15 +7,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
 import { getPostsByCar } from '../../actions/post';
+import post from '../../reducers/post';
 
 const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
+  const [currentPost, setCurrentPost] = useState("");
+
   useEffect(() => {
     getPostsByCar(match.params.car);
   }, [getPostsByCar, match.params.car]);
 
-  const handleSelectChange = (e) => (
-    <Redirect to={`/viewpost/${match.params.car}/${e.target.value}`} />
-  )
+  const handleSelectChange = (e) => {
+    //<Redirect to={`/viewpost/${match.params.car}/${e.target.value}`} />
+    setCurrentPost(e.target.value);
+  };
 
   return loading || posts === null ? (
     <Spinner />
@@ -49,10 +53,18 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
             <hr className='dropdown-divider'/>
             <h5>RECENT POSTS</h5>
             <div className='thread-post-links'>
-              <select onChange={(e) => handleSelectChange(e)}>
-                {posts.map((post) => (
-                  <option value={post._id}>{post.heading}</option>
-                ))}
+              {currentPost && (
+                <Redirect to={`/viewpost/${match.params.car}/${currentPost}`} />
+              )}
+              <select selected="test" onChange={(e) => handleSelectChange(e)}>
+                {posts.map((post) => {
+                  if (posts[0]._id === post._id) {
+                    return (
+                      <option selected value={post._id}>{post.heading}</option>
+                    );
+                  }
+                  return <option value={post._id}>{post.heading}</option>;
+                })}
               </select>
             </div>
           </div>

@@ -12,7 +12,7 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
         <img className='round-img' src={avatar} alt='' />
         <h4>{name}</h4>
       </div>
-      <div className='col-9'>
+      <div className='col-9 comments-mobile'>
         <p>{text}</p>
         <p className='post-date'>
           Posted on <Moment format='DD/MM/YYYY'>{date}</Moment>
@@ -20,7 +20,7 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
         {auth.isAuthenticated && (
           <>
             {user === auth.user._id && 
-              <button
+            <button
               type='button'
               className='btn btn-danger'
               onClick={(e) => deleteComment(postId, _id)}

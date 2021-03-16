@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './arrowMobileStyling.css';
 
 const ScrollTopArrow = () => {
   const [showScroll, setShowScroll] = useState(false);
@@ -18,8 +19,8 @@ const ScrollTopArrow = () => {
   window.addEventListener('scroll', checkScrollTop);
 
   return (
-    <i className="fas fa-arrow-circle-up scrollTop fa-4x" onClick={scrollTop} style={{ display: showScroll ? 'flex' : 'none' }} />
-  )
-}
+    <i className="fas fa-arrow-circle-up scrollTop fa-4x piss-off-arrow" onClick={scrollTop} style={{ display: showScroll ? 'flex' : 'none' }} />
+  );
+};
 
 export default ScrollTopArrow;

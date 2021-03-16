@@ -39,6 +39,33 @@
 }
 
 .comment-textarea {
-  /* padding: 1rem; */
+  padding: 0.1rem;
   width: 100%;
+}
+
+@media (max-width: 960px) {  
+  .comment-item-container {
+    margin: 0.2rem;
+    padding: 0.5rem;
+  }
+
+  .comment-item-container h4 {
+    margin-top: 0.5rem;
+    font-size: 16px;
+  }
+
+  .comment-item-container img {
+    width: 50px;
+  }
+
+  /* uncertain if still needing this! */
+  .comments-mobile {
+    /* padding-left: 10px; */
+    /* border: 0.5px red solid; */
+  }
+
+  .comments-mobile button {
+    min-width: 2rem;
+    padding: .25rem;
+  }
 }

@@ -1,11 +1,12 @@
 .card-container {
   margin: 1rem;
   position: relative;
+  max-width: 30%;
 }
 
 .cd-img {
-  height: 340px;
-  width: 530px;
+  /* height: 340px; */
+  /* width: 530px; */
   border-radius: 0.2rem;
 }
 
@@ -45,11 +46,7 @@
 }
 
 @media (max-width: 960px) {
-  .cd-img {
-    /* height: 240px;
-    width: 330px; */
-  }
   .card-container {
-    min-width: 100%;
+    min-width: 100%;  
   }
 }
