@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
 import { getPostsByCar } from '../../actions/post';
-import post from '../../reducers/post';
+//import post from '../../reducers/post';
 
 const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
   const [currentPost, setCurrentPost] = useState("");
