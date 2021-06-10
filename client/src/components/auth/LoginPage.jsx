@@ -62,7 +62,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
       </div>
       <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Login' >
         Login
-      </button>        
+      </button>
       <p className='auth-alternative'>
         Don't have an account? <Link to='/register'>Sign up</Link>
       </p>

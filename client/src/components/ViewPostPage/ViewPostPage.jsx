@@ -17,7 +17,6 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
   }, [getPostsByCar, match.params.car]);
 
   const handleSelectChange = (e) => {
-    //<Redirect to={`/viewpost/${match.params.car}/${e.target.value}`} />
     setCurrentPost(e.target.value);
   };
 
@@ -56,7 +55,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
               {currentPost && (
                 <Redirect to={`/viewpost/${match.params.car}/${currentPost}`} />
               )}
-              <select selected="test" onChange={(e) => handleSelectChange(e)}>
+              <select className="form-control" selected="test" onChange={(e) => handleSelectChange(e)}>
                 {posts.map((post) => {
                   if (posts[0]._id === post._id) {
                     return (
