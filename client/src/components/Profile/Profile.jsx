@@ -7,6 +7,8 @@ import { editUser, deleteUser } from '../../actions/auth';
 
 const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) => {
   const [pwdChange, setPwdChange] = useState(false);
+  const [btnText, setBtnText] = useState('Disabled');
+  //const [userAvatar, setUserAvatar] = useState(user.avatar);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,6 +22,7 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
       name: loading || !user.name ? '' : user.name,
       email: loading || !user.email ? '' : user.email
     });
+    //setUserAvatar(loading ? '../../img/coverImage.png' : user.avatar);
   }, [loading]);
 
   const {
@@ -32,10 +35,15 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
 
   const handleCheckboxChange = (e) => {
     e.preventDefault();
+    setPwdChange(!pwdChange)
+
+    // Reset these fields so the pwd isn't updated if they enter a new one and then uncheck updating the pwd
     if (pwdChange) {
-      setPwdChange(!pwdChange)
+      formData.newPassword1 = "";
+      formData.newPassword2 = "";
+      setBtnText("Disabled");
     } else {
-      setPwdChange(!pwdChange)
+      setBtnText("Enabled");
     }
   };
 
@@ -46,26 +54,27 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (newPassword1 !== newPassword2) {
+    if (newPassword1 !== newPassword2)
       setAlert('New passwords do not match', 'danger');
-    } else if (pwdChange === true) {
-      if (!newPassword1 || !newPassword2) {
+    else if (pwdChange === true)
+      if (!newPassword1 || !newPassword2)
         setAlert('Please fill in empty fields', 'danger');
-      } else if (newPassword1.length <= 5 || newPassword2.length <= 5) {
+      else if (newPassword1.length <= 5 || newPassword2.length <= 5)
         setAlert('Please enter a new password with 6 or more characterssss', 'danger');
-      } else {
-        editUser(name, email, currentPassword, newPassword1);
-      }
-    } else {
-      editUser(name, email, currentPassword, newPassword1);
-    }
+      else
+        editUser(name, email, currentPassword, newPassword1);      
+    else
+      editUser(name, email, currentPassword, newPassword1);    
   };
 
   return (
     <div className='profile-container'>
       <div className='profile-inner-container'>
         <div className='avatar-img text-center'>
-          <img className='profile-round-img' src={user.avatar} alt='' />
+        {!loading && (
+          <img className='profile-round-img' src={user.avatar} alt='' /> 
+        )}
+          
         </div>
         <form className='form' onSubmit={(e) => handleOnSubmit(e)}>
           <div className='form-group'>
@@ -95,7 +104,7 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
           <div className='form-group'>        
             <label>Current Password:</label>
             <input
-              type='text'
+              type='password'
               name='currentPassword'
               placeholder='Current Password..'
               value={currentPassword}
@@ -112,13 +121,13 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
               className='form-control btn-info btn-sm'
               onClick={(e) => handleCheckboxChange(e)}
             >
-              Change Password
+              Change Password - {btnText}
             </button>
           </div>
           <div className='form-group'>
             <label>New Password:</label>
             <input
-              type='text'
+              type='password'
               name='newPassword1'
               placeholder='New Password..'
               value={newPassword1}
@@ -130,7 +139,7 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
           <div className='form-group'>
             <label>Confirm New Password:</label>
             <input
-              type='text'
+              type='password'
               name='newPassword2'
               placeholder='Confirm New Password..'
               value={newPassword2}
