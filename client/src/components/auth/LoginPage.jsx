@@ -20,7 +20,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
     });
   };
 
-  const onSubmit = async (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     login(email, password);
   };
@@ -31,7 +31,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
   };
 
   return (
-    <form className='form-signin text-center' onSubmit={(e) => onSubmit(e)}>
+    <form className='form-signin text-center' onSubmit={(e) => handleOnSubmit(e)}>
       <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
       <div className='form-group'>
         <input
@@ -63,6 +63,9 @@ const LoginPage = ({ login, isAuthenticated }) => {
       <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Login' >
         Login
       </button>
+      <p className='auth-alternative'>
+        <Link to='/resetpwd'>Forgot password?</Link>
+      </p>
       <p className='auth-alternative'>
         Don't have an account? <Link to='/register'>Sign up</Link>
       </p>
