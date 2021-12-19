@@ -25,11 +25,10 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
+    if (password !== confirmpassword)
       setAlert('Passwords do not match', 'danger');
-    } else {
-      await register({ name, email, password });
-    }
+    else
+      await register({ name, email, password });    
   };
 
   if (isAuthenticated) {
