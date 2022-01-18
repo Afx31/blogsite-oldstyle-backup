@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 import { getLinksFirstPostId } from '../../actions/post';
+import { ThemeContext } from '../../contexts/ThemeContext';
 
 const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
+  const [theme, setTheme] = useContext(ThemeContext);
   const [civicLink, setCivicLink] = useState('');
   const [wagoLink, setWagoLink] = useState('');
+  const [darkModeBtnClick, setDarkModeBtnClick] = useState('');
+  const [darkModeState, setDarkModeState] = useState('lightmode');
 
   useEffect(() => {
     async function fetchData() {
@@ -17,6 +21,25 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
     }
     fetchData();
   }, []);
+  
+  const handleDarkModeChange = () => {
+    setTheme(!theme);
+    setDarkModeBtnClick(darkModeBtnClick === 'themeBtn-active' ? '' : 'themeBtn-active')
+    setDarkModeState(darkModeState === 'themeBtn-darkmode' ? '' : 'themeBtn-darkmode')
+  }
+
+  const darkModeBtn = (    
+    <div className={`themeBtn-container ${darkModeState} ${darkModeBtnClick}`} onClick={handleDarkModeChange}>
+      <div className='themeBtn-button'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-moon themeBtn-icon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-sun themeBtn-icon">
+          <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </div>
+    </div>
+  );
 
   const guestLinks = (
     <ul className='nav navbar-nav ml-auto'>
@@ -29,6 +52,11 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
         <Link to='/register' className='nav-link'>
           <button className='btn btn-sm btn-primary'>Sign up</button>
         </Link>
+      </li>
+      <li className='navbar-item'>
+        <div className='nav-link nav-link-padding'>
+          {darkModeBtn}
+        </div>
       </li>
     </ul>
   );
@@ -45,6 +73,11 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
           <button className='btn btn-sm btn-primary' onClick={logout}>Logout</button>
         </Link>
       </li>
+      <li className='navbar-item'>
+        <div className='nav-link'>
+          {darkModeBtn}
+        </div>
+      </li>
     </ul>
   );
 
@@ -60,13 +93,18 @@ const Navbar = ({ auth: { isAuthenticated, user, loading }, logout }) => {
           <button className='btn btn-sm btn-primary' onClick={logout}>Logout</button>
         </Link>
       </li>
+      <li className='navbar-item'>
+        <div className='nav-link'>
+          {darkModeBtn}
+        </div>
+      </li>
     </ul>
   );
 
   return (
     <>
       <div className='cover-img-container'></div>
-      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+      <nav className='navbar navbar-expand-lg navbar-dark'>
         <button
           className='navbar-toggler'
           type='button'

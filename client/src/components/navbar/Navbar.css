@@ -2,9 +2,62 @@
   background-image: url("../../img/coverImage.png");
   background-repeat: no-repeat;
   /* background-size: 100% 100%; */
-  background-size:cover;
+  background-size: cover;
   width: 100%;
   height: 30vh;
+}
+
+.navbar {
+  background-color: var(--background-secondary);
+}
+
+.nav-link-padding {
+  padding-bottom: 0;
+}
+
+/* CSS for dark theme toggle */
+.themeBtn-container {
+  background: var(--bg);
+  --bg: #FFFFFF;
+  --text: #181A1B;
+  --opp-bg: #181A1B;
+  --opp-text: #FFFFFF;
+  height: 32px;
+  width: 32px;   
+  overflow: hidden;
+  border-radius: 0.2rem;
+  display: inline-block;
+  cursor: pointer;  
+}
+
+.themeBtn-darkmode {
+  --bg: #181A1B;
+  --text: #FFFFFF;
+  --opp-bg: #FFFFFF;
+  --opp-text: #181A1B;
+}
+
+.themeBtn-button {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: var(--opp-bg);
+  align-items: center;
+  transition: all 320ms ease-out 100ms;
+  top: -2px;
+}
+
+.themeBtn-icon {
+  margin: 6.9px;
+  width: 32px;
+  height: 24px;
+  display: block;
+  stroke: var(--opp-text);
+}
+
+.themeBtn-active .themeBtn-button {
+  top: -40px;
 }
 
 @media (min-width: 992px) {

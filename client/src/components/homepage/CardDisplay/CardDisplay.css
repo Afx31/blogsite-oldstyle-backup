@@ -22,7 +22,7 @@
 
 .inner-stuff {
   position: absolute;
-  color: #fff;
+  color: var(--text-white);
   width: 90%;
   top: 50%;
   left: 50%;
@@ -35,13 +35,13 @@
 
 .readmore-btn {
   padding: 10px 20px;
-  color: #fff;
-  border: 2px solid #fff;
+  color: var(--text-white);
+  border: 2px solid var(--text-white);
   text-decoration: none;
 }
 .readmore-btn:hover {
   color: #000;
-  background-color: #fff;
+  background-color: var(--text-white);
   transition: 0.3s ease-in-out;
 }
 

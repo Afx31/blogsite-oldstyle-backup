@@ -1,7 +1,5 @@
 .comment-item-container {
-  background: #fff;
-  color: #333;
-  border: #ccc solid 1px;
+  border: 1px solid #CCC;
   margin: 1rem;
   padding: 1rem;
   align-items: center;
@@ -21,7 +19,7 @@
 }
 
 .post .post-date {
-  color: #aaa;
+  color: var(--text-secondary);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
@@ -35,7 +33,7 @@
   margin-bottom: 1rem;
 }
 .post-form h5 {
-  color: red;
+  color: var(--text-alert);
 }
 
 .comment-textarea {
@@ -56,12 +54,6 @@
 
   .comment-item-container img {
     width: 50px;
-  }
-
-  /* uncertain if still needing this! */
-  .comments-mobile {
-    /* padding-left: 10px; */
-    /* border: 0.5px red solid; */
   }
 
   .comments-mobile button {

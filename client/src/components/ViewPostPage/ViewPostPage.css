@@ -1,6 +1,6 @@
 .vpp-container {
   margin-top: 4rem;
-  /* border: 1px solid red; */
+  padding-bottom: 4rem;
 }
 
 /*  LEFT PANE  */
@@ -15,11 +15,10 @@
 .mobile-pane-left {
   display: none;
   padding-left: 16px;
-  /* border: 1px solid red; */
 }
 
 .dropdown-divider {
-  border: 1px solid lightgray;
+  border: 1px solid var(--background-tertiary);
 }
 
 /*  RIGHT PANE  */

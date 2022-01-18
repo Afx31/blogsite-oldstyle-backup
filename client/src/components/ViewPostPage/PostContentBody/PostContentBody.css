@@ -5,6 +5,7 @@
 .pcb-date {
   margin-bottom: 2rem;
   font-size: 13px;
+  color: var(--text-secondary);
 }
 
 .pcb-date-format {
@@ -18,7 +19,7 @@
 
 .pcb-dropdown-divider {
   margin: 4rem 0;
-  border: 1px solid #2e2e2e;
+  border: 1px solid var(--background-secondary);
 }
 
 .react-player-vid {

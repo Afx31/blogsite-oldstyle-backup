@@ -1,5 +1,5 @@
 .footer {
-  background-color: #2e2e2e;
+  background-color: var(--background-secondary);
   height: 4rem;
   position: absolute;
   bottom: 0;
@@ -8,6 +8,5 @@
 }
 
 .footer-container {
-  color: #e2e2e2;
   text-align: center;
 }
