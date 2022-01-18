@@ -36,54 +36,56 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
   };
 
   return (
-    <form className='form-signin text-center' onSubmit={(e) => onSubmit(e)}>
-      <h1 className='h3 mb-3 font-weight-normal'>Create Your Account</h1>
-      <div className='form-group'>
-        <input
-          type='text'
-          name='name'
-          placeholder='Name'
-          className='form-control'
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
+    <form className='form-container text-center' onSubmit={(e) => onSubmit(e)}>
+      <div className='form-signin'>
+        <h1 className='h3 mb-3 font-weight-normal'>Create Your Account</h1>
+        <div className='form-group'>
+          <input
+            type='text'
+            name='name'
+            placeholder='Name'
+            className='form-control'
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='email'
+            name='email'
+            placeholder='Email address'
+            className='form-control'
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='password'
+            name='password'
+            placeholder='Password'
+            className='form-control'
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='password'
+            name='confirmpassword'
+            placeholder='Confirm Password'
+            className='form-control'
+            value={confirmpassword}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <button type='submit' className='btn btn-lg btn-primary btn-block' value='Register'>
+          Register
+        </button>
+        <p className='auth-alternative'>
+          Already have an account? <Link to='/login'>Sign In</Link>
+        </p>
       </div>
-      <div className='form-group'>
-        <input
-          type='email'
-          name='email'
-          placeholder='Email address'
-          className='form-control'
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-      </div>
-      <div className='form-group'>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          className='form-control'
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-      </div>
-      <div className='form-group'>
-        <input
-          type='password'
-          name='confirmpassword'
-          placeholder='Confirm Password'
-          className='form-control'
-          value={confirmpassword}
-          onChange={(e) => onChange(e)}
-        />
-      </div>
-      <button type='submit' className='btn btn-lg btn-primary btn-block' value='Register'>
-        Register
-      </button>
-      <p className='auth-alternative'>
-        Already have an account? <Link to='/login'>Sign In</Link>
-      </p>
     </form>
   );
 };

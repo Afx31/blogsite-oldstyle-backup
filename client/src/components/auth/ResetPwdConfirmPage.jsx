@@ -12,13 +12,15 @@ const ResetPwdConfirmaPage = () => {
   }
  
   return (
-    <form className='form-signin' onSubmit={(e) => handleOnSubmit(e)}>
-      <h1 className='h3 mb-3 font-weight-normal text-center'>Your password will be reset</h1>
-      <p className='text-center'>Don't worry, it happens to the best of us.</p>
-      <p className='text-center'>"""Type some form of message here explaining what will happen"""</p>
-      <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Submit' >
-        Take me back to login page
-      </button>
+    <form className='form-container' onSubmit={(e) => handleOnSubmit(e)}>
+      <div className='form-signin'>
+        <h1 className='h3 mb-3 font-weight-normal text-center'>Your password will be reset</h1>
+        <p className='text-center'>Don't worry, it happens to the best of us.</p>
+        <p className='text-center'>"""Type some form of message here explaining what will happen"""</p>
+        <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Submit' >
+          Take me back to login page
+        </button>
+      </div>
     </form>
   );
 }

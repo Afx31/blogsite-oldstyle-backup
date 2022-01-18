@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import './ScrollTopArrow.css';
+import React, { useState, useEffect } from 'react';
 
 const ScrollTopArrow = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.matchMedia("(max-width: 960px)").matches);
+
+  useEffect(() => {
+    window
+    .matchMedia("(max-width: 960px)")
+    .addEventListener('change', e => setIsMobile( e.matches ));
+  }, []);
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
+    if (!showScroll && window.pageYOffset > 400)
       setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
-      setShowScroll(false);
-    } 
+    else if (showScroll && window.pageYOffset <= 400)
+      setShowScroll(false);  
   };
 
   const scrollTop = () => {
@@ -19,7 +24,8 @@ const ScrollTopArrow = () => {
   window.addEventListener('scroll', checkScrollTop);
 
   return (
-    <i className="fas fa-arrow-circle-up scrollTop fa-4x piss-off-arrow" onClick={scrollTop} style={{display: showScroll ? 'flex' : 'none'}} />
+    <i className="fas fa-arrow-circle-up scrollTop fa-4x" onClick={scrollTop}
+        style={{display: showScroll && !isMobile ? 'flex' : 'none'}} />
   );
 };
 

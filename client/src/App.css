@@ -1,7 +1,27 @@
 #root {
   position: relative;
-  padding-bottom: 5rem;
+  padding-bottom: 3rem;
   min-height: 100vh;
+}
+
+.darkmode {
+  --background: #181A1B;
+  --text-primary: #FFF;
+}
+
+.lightmode {
+  --background: #FFFF;
+  --text-primary: #000;  
+}
+
+.App {
+  background-color: var(--background);
+  color: var(--text-primary);
+  --background-secondary: #343A40;
+  --background-tertiary: #E2E2E2;
+  --text-secondary: #AAA;
+  --text-alert: #FF0000;
+  --text-white: #FFF;
 }
 
 .scrollTop {

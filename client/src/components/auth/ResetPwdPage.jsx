@@ -36,45 +36,47 @@ const ResetPwdPage = () => {
   };
 
   return (
-    <form className='form-signin' onSubmit={(e) => handleOnSubmit(e)}>
-      <h1 className='h3 mb-3 font-weight-normal text-center'>Reset Password</h1>
-      <p className='text-center'>Don't worry, it happens to the best of us.</p>
-      <p className='text-center'>"""Type some form of message here explaining what will happen"""</p>
-      <div className='form-group'>
-        <label>Email Address:</label>
-        <input
-          type='email'
-          name='email'
-          placeholder='e.g. email@gmail.com'
-          className='form-control'
-          value={email}
-          onChange={(e) => handleInputChange(e)}
-          required
-        />        
+    <form className='form-container' onSubmit={(e) => handleOnSubmit(e)}>
+      <div className='form-signin'>
+        <h1 className='h3 mb-3 font-weight-normal text-center'>Reset Password</h1>
+        <p className='text-center'>Don't worry, it happens to the best of us.</p>
+        <p className='text-center'>"""Type some form of message here explaining what will happen"""</p>
+        <div className='form-group'>
+          <label>Email Address:</label>
+          <input
+            type='email'
+            name='email'
+            placeholder='e.g. email@gmail.com'
+            className='form-control'
+            value={email}
+            onChange={(e) => handleInputChange(e)}
+            required
+          />        
+        </div>
+        <div className='form-group'>
+          <label>Secret Question:</label>
+          <select className='form-control' name='question' onChange={(e) => handleInputChange(e)}>
+            {secretQuestionList.map((post) => {
+              return ( <option value={post}>{post}</option> )
+            })}
+          </select>
+        </div>
+        <div className='form-group'>
+          <label>Secret Question Answer:</label>
+          <input
+            type='text'
+            name='answer'
+            placeholder='Your secret question answer..'
+            className='form-control'
+            value={answer}
+            onChange={(e) => handleInputChange(e)}
+            required
+          />
+        </div>
+        <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Submit' >
+          Submit Password Reset Request
+        </button>
       </div>
-      <div className='form-group'>
-        <label>Secret Question:</label>
-        <select className='form-control' name='question' onChange={(e) => handleInputChange(e)}>
-          {secretQuestionList.map((post) => {
-            return ( <option value={post}>{post}</option> )
-          })}
-        </select>
-      </div>
-      <div className='form-group'>
-        <label>Secret Question Answer:</label>
-        <input
-          type='text'
-          name='answer'
-          placeholder='Your secret question answer..'
-          className='form-control'
-          value={answer}
-          onChange={(e) => handleInputChange(e)}
-          required
-        />
-      </div>
-      <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Submit' >
-        Submit Password Reset Request
-      </button>
     </form>
   );
 }

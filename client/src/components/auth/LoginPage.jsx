@@ -10,6 +10,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
     email: '',
     password: ''
   });
+  
   // Deconstruction state for ease of access
   const { email, password } = formData;
 
@@ -31,44 +32,46 @@ const LoginPage = ({ login, isAuthenticated }) => {
   };
 
   return (
-    <form className='form-signin text-center' onSubmit={(e) => handleOnSubmit(e)}>
-      <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
-      <div className='form-group'>
-        <input
-          type='email'
-          name='email'
-          placeholder='Email address'
-          className='form-control'
-          value={email}
-          onChange={(e) => onChange(e)}
-          required
-        />
+    <form className='form-container text-center' onSubmit={(e) => handleOnSubmit(e)}>
+      <div className='form-signin'>      
+        <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
+        <div className='form-group'>
+          <input
+            type='email'
+            name='email'
+            placeholder='Email address'
+            className='form-control'
+            value={email}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <input
+            type='password'
+            name='password'
+            placeholder='Password'
+            className='form-control'
+            value={password}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
+        <div className='checkbox mb-3'>
+          <label>
+            <input type='checkbox' value='remember-me' /> Remember me
+          </label>
+        </div>
+        <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Login' >
+          Login
+        </button>
+        <p className='auth-alternative'>
+          <Link to='/resetpwd'>Forgot password?</Link>
+        </p>
+        <p className='auth-alternative'>
+          Don't have an account? <Link to='/register'>Sign up</Link>
+        </p>
       </div>
-      <div className='form-group'>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          className='form-control'
-          value={password}
-          onChange={(e) => onChange(e)}
-          required
-        />
-      </div>
-      <div className='checkbox mb-3'>
-        <label>
-          <input type='checkbox' value='remember-me' /> Remember me
-        </label>
-      </div>
-      <button type='submit' className='btn btn-lg btn-primary btn-block ' value='Login' >
-        Login
-      </button>
-      <p className='auth-alternative'>
-        <Link to='/resetpwd'>Forgot password?</Link>
-      </p>
-      <p className='auth-alternative'>
-        Don't have an account? <Link to='/register'>Sign up</Link>
-      </p>
     </form>
   )
 };
