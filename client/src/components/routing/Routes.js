@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from '../routing/PrivateRoute';
-import RegisterPage from '../../components/auth/RegisterPage';
-import LoginPage from '../../components/auth/LoginPage';
-import ResetPwdPage from '../../components/auth/ResetPwdPage';
-import ResetPwdConfirmPage from '../../components/auth/ResetPwdConfirmPage';
-import Alert from '../../components/layout/Alert';
+import PrivateRoute from '../Routing/PrivateRoute';
+import RegisterPage from '../../components/Auth/RegisterPage';
+import LoginPage from '../../components/Auth/LoginPage';
+import ResetPwdPage from '../../components/Auth/ResetPwdPage';
+import ResetPwdConfirmPage from '../../components/Auth/ResetPwdConfirmPage';
+import Alert from '../../components/Layout/Alert';
 import CreatePostPage from '../../components/CreatePostPage/CreatePostPage';
 import ViewPostPage from '../../components/ViewPostPage/ViewPostPage';
 import Profile from '../../components/Profile/Profile';

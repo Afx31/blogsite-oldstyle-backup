@@ -3,12 +3,14 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = (props) => {
   const storedTheme = localStorage.getItem('theme');
-  // const initialTheme = storedTheme ? true : false;
-  // const [theme, setTheme] = useState(initialTheme);
-  const [theme, setTheme] = useState(false);
+  //const initialTheme = storedTheme ? true : false;
+  //var setter = storedTheme === 'darkmode' ? true : false;
+  const initialTheme = false
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
-    localStorage.setItem('theme', theme)
+    localStorage.setItem('theme', theme ? 'darkmode' : 'lightmode')
+    console.log(localStorage)
   }, [theme]);
 
   return(

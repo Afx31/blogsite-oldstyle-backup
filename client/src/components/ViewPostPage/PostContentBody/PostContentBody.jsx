@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import './PostContentBody.css';
 import Moment from 'react-moment';
 import ReactPlayer from 'react-player/youtube';
-import Spinner from '../../layout/Spinner';
+import Spinner from '../../Layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPostById } from '../../../actions/post';
-import CommentForm from '../comments/CommentForm';
-import CommentItem from '../comments/CommentItem';
+import CommentForm from '../Comments/CommentForm';
+import CommentItem from '../Comments/CommentItem';
 
 const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => {
   useEffect(() => {
