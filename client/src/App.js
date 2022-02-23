@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/HomePage/HomePage';
 import Footer from './components/Footer/Footer';
-import Routes from './components/routing/Routes';
-import ScrollTopArrow from './components/layout/ScrollTopArrow';
+import Routes from './components/Routing/Routes';
+import ScrollTopArrow from './components/Layout/ScrollTopArrow';
 import { LOGOUT } from './actions/types';
 import {ThemeContext} from './contexts/ThemeContext';
 
@@ -17,8 +17,7 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
 const App = () => {
-  const [theme] = useContext(ThemeContext); 
-  var themeMode = theme ? 'darkmode' : 'lightmode';
+  const [theme] = useContext(ThemeContext);
 
   useEffect(() => {
     // check for token in LS
@@ -35,7 +34,7 @@ const App = () => {
   
   return (
     <Provider store={store}>
-      <div className={`App ${themeMode}`}>
+      <div className={`App ${theme ? 'darkmode' : 'lightmode'}`}>
         <Router>
           <Navbar />
           <Switch>

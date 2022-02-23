@@ -9,7 +9,7 @@
 }
 
 .pane-left h1, .mobile-pane-left h1 {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .mobile-pane-left {

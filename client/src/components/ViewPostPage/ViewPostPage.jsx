@@ -5,7 +5,7 @@ import PostContentBody from './PostContentBody/PostContentBody';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Spinner from '../layout/Spinner';
+import Spinner from '../Layout/Spinner';
 import { getPostsByCar } from '../../actions/post';
 //import post from '../../reducers/post';
 
