@@ -19,7 +19,7 @@ const CardDisplay = ({ id, car, thumbnail, heading, description }) => {
         </div>
       </div>
     </>
-  );
+  )
 };
 
 export default CardDisplay;

@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const auth = require('../../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require('express-validator/check');
 
 const User = require('../../models/User');
 const Post = require('../../models/Post');
@@ -16,9 +16,9 @@ const Post = require('../../models/Post');
 router.post(
   '/register',
   [
-    check("name", "Name is required").not().isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
-    check("password", "Please enter a password with 6 or more characters")
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Please enter a password with 6 or more characters')
       .isLength({ min: 6 }),
   ],
   async (req, res) => {
@@ -43,7 +43,7 @@ router.post(
       //r: Rating
       //d: Default
       //f: Force
-      const avatar = gravatar.url(email, { 
+      const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
         d: 'identicon',
@@ -91,14 +91,14 @@ router.post(
 );
 
 // @route   POST /api/users/editUser
-// @desc    Edit the user 
+// @desc    Edit the user
 // @access  Private
 router.post(
   '/editUser',
   // [
-  //   check("name", "Name is required").not().isEmpty(),
-  //   check("email", "Please include a valid email").isEmail(),
-  //   check("password", "Please enter a password with 6 or more characters")
+  //   check('name', 'Name is required').not().isEmpty(),
+  //   check('email', 'Please include a valid email').isEmail(),
+  //   check('password', 'Please enter a password with 6 or more characters')
   //     .isLength({ min: 6 }),
   // ],
   auth, async (req, res) => {
@@ -124,7 +124,7 @@ router.post(
       return res.status(400).json({ errors: [{ msg: 'Invalid Old Password' }] });
     }
 
-    if (currentPassword && newPassword) {      
+    if (currentPassword && newPassword) {
       // ----- Encrypt password -----
       const salt = await bcrypt.genSalt(10);
       // Creating the hash

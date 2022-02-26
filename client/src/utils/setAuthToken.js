@@ -10,8 +10,6 @@ const setAuthToken = token => {
   }
 };
 
-export default setAuthToken;
-
 // Function that takes in a token, IF the token is valid it'll add to the global header
 // ELSE the auth will be deleted
 // import axios from 'axios';
@@ -36,4 +34,4 @@ export default setAuthToken;
 //   }
 // };
 
-// export default setAuthToken;
+export default setAuthToken;

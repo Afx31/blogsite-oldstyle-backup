@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-@media (max-width: 960px) {  
+@media (max-width: 960px) {
   .comment-item-container {
     margin: 0.2rem;
     padding: 0.5rem;

@@ -35,15 +35,15 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
 
   const handleCheckboxChange = (e) => {
     e.preventDefault();
-    setPwdChange(!pwdChange)
+    setPwdChange(!pwdChange);
 
     // Reset these fields so the pwd isn't updated if they enter a new one and then uncheck updating the pwd
     if (pwdChange) {
-      formData.newPassword1 = "";
-      formData.newPassword2 = "";
-      setBtnText("Disabled");
+      formData.newPassword1 = '';
+      formData.newPassword2 = '';
+      setBtnText('Disabled');
     } else {
-      setBtnText("Enabled");
+      setBtnText('Enabled');
     }
   };
 
@@ -62,9 +62,9 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
       else if (newPassword1.length <= 5 || newPassword2.length <= 5)
         setAlert('Please enter a new password with 6 or more characterssss', 'danger');
       else
-        editUser(name, email, currentPassword, newPassword1);      
+        editUser(name, email, currentPassword, newPassword1);
     else
-      editUser(name, email, currentPassword, newPassword1);    
+      editUser(name, email, currentPassword, newPassword1);
   };
 
   return (
@@ -72,9 +72,8 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
       <div className='profile-inner-container'>
         <div className='avatar-img text-center'>
         {!loading && (
-          <img className='profile-round-img' src={user.avatar} alt='' /> 
+          <img className='profile-round-img' src={user.avatar} alt='' />
         )}
-          
         </div>
         <form className='form' onSubmit={(e) => handleOnSubmit(e)}>
           <div className='form-group'>
@@ -100,8 +99,8 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
               onChange={(e) => handleInputChange(e)}
               required
             />
-          </div>        
-          <div className='form-group'>        
+          </div>
+          <div className='form-group'>
             <label>Current Password:</label>
             <input
               type='password'
@@ -115,9 +114,9 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
           </div>
           <div className='form-group mt-5 text-center'>
             <label>If you want to update your password fill out the form below, else leave it blank</label>
-            <button 
+            <button
               type='button'
-              name='checkPasswordChange'              
+              name='checkPasswordChange'
               className='form-control btn-info btn-sm'
               onClick={(e) => handleCheckboxChange(e)}
             >
@@ -154,21 +153,21 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
         </form>
         <div className='my-1 text-center'>
           <button className='btn btn-danger my-1' onClick={() => deleteUser()}>Delete Account</button>
-        </div>        
+        </div>
       </div>
     </div>
-  );
+  )
 };
 
 Profile.propTypes = {
   auth: PropTypes.object.isRequired,
   editUser: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { setAlert, editUser, deleteUser })(Profile);

@@ -56,7 +56,7 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
             default:
               console.log('Single Post loading error');
           }
-        })} 
+        })}
       </div>
       
       <hr className='pcb-dropdown-divider' />
@@ -67,16 +67,16 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
       </div>
       <CommentForm postId={id} />
     </>
-  );
+  )
 };
 
 PostContentBody.propTypes = {
   getPostById: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  post: state.post,
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getPostById })(PostContentBody);

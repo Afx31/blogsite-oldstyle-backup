@@ -8,7 +8,7 @@ const Footer = () => {
         <p className='text-muted'>&copy; Will Mitchell Codes</p>
       </div>
     </footer>
-  );
+  )
 };
 
 export default Footer;

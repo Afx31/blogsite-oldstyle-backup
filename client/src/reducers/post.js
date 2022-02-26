@@ -11,7 +11,7 @@ const initialState = {
   posts: [],
   singlePost: null,
   loading: true,
-  error: {},
+  error: {}
 };
 
 //eslint-disable-next-line
@@ -62,5 +62,5 @@ export default function (state = initialState, action) {
       };
     default:
       return state;
-  };
+  }
 };

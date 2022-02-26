@@ -48,15 +48,15 @@ const CommentForm = ({ auth: { isAuthenticated, loading }, postId, addComment })
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           {!loading && <>{ isAuthenticated ? authForm : guestForm }</>}
-        </div>      
+        </div>
       </form>
     </div>
-  );
+  )
 };
 
 CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -10,7 +10,7 @@ import { getPostsByCar } from '../../actions/post';
 //import post from '../../reducers/post';
 
 const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
-  const [currentPost, setCurrentPost] = useState("");
+  const [currentPost, setCurrentPost] = useState('');
 
   useEffect(() => {
     getPostsByCar(match.params.car);
@@ -55,7 +55,7 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
               {currentPost && (
                 <Redirect to={`/viewpost/${match.params.car}/${currentPost}`} />
               )}
-              <select className="form-control" selected="test" onChange={(e) => handleSelectChange(e)}>
+              <select className='form-control' selected='test' onChange={(e) => handleSelectChange(e)}>
                 {posts.map((post) => {
                   if (posts[0]._id === post._id) {
                     return (
@@ -73,16 +73,16 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
         </div>
       </div>
     </>
-  );
+  )
 };
 
 ViewPostPage.propTypes = {
   getPostsByCar: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  post: state.post,
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getPostsByCar })(ViewPostPage);
