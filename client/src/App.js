@@ -17,7 +17,7 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
 const App = () => {
-  const [theme] = useContext(ThemeContext);
+  const [darkMode] = useContext(ThemeContext);
 
   useEffect(() => {
     // check for token in LS
@@ -34,7 +34,7 @@ const App = () => {
   
   return (
     <Provider store={store}>
-      <div className={`App ${theme ? 'darkmode' : 'lightmode'}`}>
+      <div className={`App ${darkMode ? 'darkmode' : 'lightmode'}`}>
         <Router>
           <Navbar />
           <Switch>
@@ -46,7 +46,7 @@ const App = () => {
         <Footer />
       </div>
     </Provider>
-  );
-}
+  )
+};
 
 export default App;

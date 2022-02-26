@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AuthPage.css';
 import { useHistory } from 'react-router-dom';
 // import { connect } from 'react-redux';
-// import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types';
 // import { login } from '../../actions/auth';
 
 const secretQuestionList = [
@@ -40,7 +40,7 @@ const ResetPwdPage = () => {
       <div className='form-signin'>
         <h1 className='h3 mb-3 font-weight-normal text-center'>Reset Password</h1>
         <p className='text-center'>Don't worry, it happens to the best of us.</p>
-        <p className='text-center'>"""Type some form of message here explaining what will happen"""</p>
+        <p className='text-center'>'''Type some form of message here explaining what will happen'''</p>
         <div className='form-group'>
           <label>Email Address:</label>
           <input
@@ -51,7 +51,7 @@ const ResetPwdPage = () => {
             value={email}
             onChange={(e) => handleInputChange(e)}
             required
-          />        
+          />
         </div>
         <div className='form-group'>
           <label>Secret Question:</label>
@@ -78,7 +78,7 @@ const ResetPwdPage = () => {
         </button>
       </div>
     </form>
-  );
-}
+  )
+};
 
 export default ResetPwdPage;

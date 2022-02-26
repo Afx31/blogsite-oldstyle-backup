@@ -21,12 +21,12 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 // Pull in the auth state from Reducer
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

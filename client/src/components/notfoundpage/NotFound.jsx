@@ -8,7 +8,7 @@ export const NotFound = () => {
       </h1>
       <p className='large'>Sorry, this page does not exist</p>
     </>
-  );
+  )
 };
 
 export default NotFound;

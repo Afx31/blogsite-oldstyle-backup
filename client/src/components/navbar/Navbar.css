@@ -23,11 +23,11 @@
   --opp-bg: #181A1B;
   --opp-text: #FFFFFF;
   height: 32px;
-  width: 32px;   
+  width: 32px;
   overflow: hidden;
   border-radius: 0.2rem;
   display: inline-block;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .themeBtn-darkmode {

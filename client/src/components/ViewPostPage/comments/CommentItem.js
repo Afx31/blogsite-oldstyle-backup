@@ -19,7 +19,7 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
         </p>
         {auth.isAuthenticated && (
           <>
-            {user === auth.user._id && 
+            {user === auth.user._id &&
             <button
               type='button'
               className='btn btn-danger'
@@ -32,18 +32,18 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
         )}
       </div>
     </div>
-  );
+  )
 };
 
 CommentItem.propTypes = {
   postId: PropTypes.number.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { deleteComment })(CommentItem);

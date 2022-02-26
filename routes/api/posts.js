@@ -22,7 +22,7 @@ router.post('/add-post', auth, async (req, res) => {
       car: req.body.car,
       thumbnail: req.body.thumbnail,
       description: req.body.description,
-      post: req.body.formData,
+      post: req.body.formData
     });
     
     const post = await newPost.save();
@@ -39,7 +39,7 @@ router.post('/add-post', auth, async (req, res) => {
 // @access  Public
 router.get('/postsByCar/:car', async (req, res) => {
   try {
-    const posts = await Post.find({ "car": req.params.car }).sort({ "date": -1 });
+    const posts = await Post.find({ 'car': req.params.car }).sort({ 'date': -1 });
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -91,7 +91,7 @@ router.get('/getPostById/:id', async (req, res) => {
 // @access  Private
 router.get('/firstPostId/:car', async (req, res) => {
   try {
-    const postId = await Post.find({ "car": req.params.car }).sort({ '_id': -1 }).limit(1);
+    const postId = await Post.find({ 'car': req.params.car }).sort({ '_id': -1 }).limit(1);
     res.json(postId);
   } catch (err) {
     console.error(err.message);
@@ -169,6 +169,5 @@ router.delete('/deleteComment/:id/:comment_id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
 
 module.exports = router;

@@ -11,15 +11,15 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
     name: '',
     email: '',
     password: '',
-    confirmpassword: '',
+    confirmpassword: ''
   });
 
   const { name, email, password, confirmpassword } = formData;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -28,7 +28,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
     if (password !== confirmpassword)
       setAlert('Passwords do not match', 'danger');
     else
-      await register({ name, email, password });    
+      await register({ name, email, password });
   };
 
   if (isAuthenticated) {
@@ -87,13 +87,13 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
         </p>
       </div>
     </form>
-  );
+  )
 };
 
 RegisterPage.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

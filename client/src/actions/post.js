@@ -9,7 +9,7 @@ export const getLinksFirstPostId = async (car) => {
     return res.data[0]._id;
   } catch (err) {
     console.error(err.message);
-  };
+  }
 };
 
 // GET Post by ID
@@ -43,7 +43,7 @@ export const getPostsByCar = (car) => async (dispatch) => {
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
-  };
+  }
 };
 
 // GET Post bio data for homepage

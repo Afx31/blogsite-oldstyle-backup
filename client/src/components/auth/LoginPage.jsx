@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AuthPage.css';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 
 const LoginPage = ({ login, isAuthenticated }) => {
@@ -33,7 +33,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
   return (
     <form className='form-container text-center' onSubmit={(e) => handleOnSubmit(e)}>
-      <div className='form-signin'>      
+      <div className='form-signin'>
         <h1 className='h3 mb-3 font-weight-normal'>Please sign in</h1>
         <div className='form-group'>
           <input
@@ -78,7 +78,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
 LoginPage.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -12,7 +12,7 @@ const CreatePostPage = ({ addPost }) => {
   });
   const [temp, setTemp] = useState({
     postType: '',
-    content: '',
+    content: ''
   });
   const [formData2, setFormData2] = useState([]);
 
@@ -20,7 +20,7 @@ const CreatePostPage = ({ addPost }) => {
     e.preventDefault();
     setFormData1({
       ...formData1,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -93,8 +93,6 @@ const CreatePostPage = ({ addPost }) => {
           </button>
         </div>
 
-
-
         <div className='col right-input'>
           <h1>Your Post</h1>
           <form className='cpp-form-left'>
@@ -119,10 +117,10 @@ const CreatePostPage = ({ addPost }) => {
                 required
               >
                 <option disabled selected value>--Select--</option>
-                <option value='civic'>Civic</option>
-                <option value='wago'>Wago</option>
-                <option value='frogo'>Frogo</option>
-                <option value='ef9'>EF9</option>
+                <option value='Civic'>Civic</option>
+                <option value='Wago'>Wago</option>
+                <option value='Frogo'>Frogo</option>
+                <option value='EF9'>EF9</option>
               </select>
             </div>
             <div className='form-group'>
@@ -162,7 +160,7 @@ const CreatePostPage = ({ addPost }) => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default connect(null, { addPost })(CreatePostPage);
