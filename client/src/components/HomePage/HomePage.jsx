@@ -20,6 +20,7 @@ const HomePage = () => {
         <div className='home-card-container'>
           {post.map((post) => (
             <CardDisplay
+              key={post._id}
               id={post._id}
               car={post.car}
               thumbnail={post.thumbnail}
