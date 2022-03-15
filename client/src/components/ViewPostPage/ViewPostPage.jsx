@@ -55,14 +55,11 @@ const ViewPostPage = ({ getPostsByCar, post: { posts, loading }, match }) => {
               {currentPost && (
                 <Redirect to={`/viewpost/${match.params.car}/${currentPost}`} />
               )}
-              <select className='form-control' selected='test' onChange={(e) => handleSelectChange(e)}>
+              <select className='form-control' defaultValue='' onChange={(e) => handleSelectChange(e)}>
                 {posts.map((post) => {
-                  if (posts[0]._id === post._id) {
-                    return (
-                      <option selected value={post._id}>{post.heading}</option>
-                    );
-                  }
-                  return <option value={post._id}>{post.heading}</option>;
+                  if (posts[0]._id === post._id)
+                    return (<option key={post._id} value={post._id}>{post.heading}</option>)
+                  return <option key={post._id} value={post._id}>{post.heading}</option>
                 })}
               </select>
             </div>

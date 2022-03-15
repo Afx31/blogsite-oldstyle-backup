@@ -14,19 +14,19 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
     getPostById(id);
   }, [getPostById, id]);
 
-  const renderText = (content) => {
-    return ( <> <p>{content}</p> </> );
+  const renderText = (key, content) => {
+    return ( <React.Fragment key={key}> <p>{content}</p> </React.Fragment> );
   };
 
-  const renderImage = (content) => {
-    return ( <> <img className='pcb-img img-fluid' src={content} alt='post body content' /> </> );
+  const renderImage = (key, content) => {
+    return ( <React.Fragment key={key}> <img className='pcb-img img-fluid' src={content} alt='post body content' /> </React.Fragment> );
   };
 
-  const renderYouTube = (content) => {
+  const renderYouTube = (key, content) => {
     return (
       <>
         <div className='react-player-vid'>
-          <ReactPlayer url={content} />
+          <ReactPlayer key={key} url={content} />
         </div>
       </>
     )
@@ -45,14 +45,15 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
       </p>
 
       <div className='pcb-content'>
-        {singlePost.post.map(curr => {
-          switch (curr.postType) {
+        {// eslint-disable-next-line
+        singlePost.post.map(post => {
+          switch (post.postType) {
             case 'text':
-              return renderText(curr.content);
+              return renderText(post._id, post.content);
             case 'image':
-              return renderImage(curr.content);
+              return renderImage(post._id, post.content);
             case 'youtube':
-              return renderYouTube(curr.content);
+              return renderYouTube(post._id, post.content);
             default:
               console.log('Single Post loading error');
           }
@@ -61,7 +62,7 @@ const PostContentBody = ({ getPostById, id, post: { singlePost, loading } }) => 
       
       <hr className='pcb-dropdown-divider' />
       <div className='comments'>
-        {singlePost.comments.map((comment) => (
+        {singlePost.comments.map(comment => (
           <CommentItem key={comment._id} comment={comment} postId={id} />
         ))}
       </div>
