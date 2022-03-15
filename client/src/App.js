@@ -21,14 +21,15 @@ const App = () => {
 
   useEffect(() => {
     // check for token in LS
-    if (localStorage.token) {
+    if (localStorage.token)
       setAuthToken(localStorage.token);
-    }
+    
     store.dispatch(loadUser());
 
     // log user out from all tabs if they log out in one tab
     window.addEventListener('storage', () => {
-      if (!localStorage.token) store.dispatch({ type: LOGOUT });
+      if (!localStorage.token)
+        store.dispatch({ type: LOGOUT });
     });
   }, []);
   

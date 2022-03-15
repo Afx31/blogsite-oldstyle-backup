@@ -18,11 +18,15 @@ const Profile = ({ setAlert, editUser, deleteUser, auth: { loading, user } }) =>
   });
   
   useEffect(() => {
-    setFormData({
+    setFormData((prevState) => ({
       name: loading || !user.name ? '' : user.name,
-      email: loading || !user.email ? '' : user.email
-    });
+      email: loading || !user.email ? '' : user.email,
+      currentPassword: prevState.currentPassword,
+      newPassword1: prevState.newPassword1,
+      newPassword2: prevState.newPassword2
+    }));
     //setUserAvatar(loading ? '../../img/coverImage.png' : user.avatar);
+    // eslint-disable-next-line
   }, [loading]);
 
   const {
