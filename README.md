@@ -1,3 +1,3 @@
-*** STILL UNDER DEVELOPMENT ***
+Forked' backup from my blogsite repo, as I'm taking it in a new direction utilising markdown.
 
-This is a blog website I've created to further my skills using the MERN stack. It is also for my own personal use to show my build threads of my cars which are posted on forums, as forums are slowly starting to phase out I thought it's a perfect time to start a blog so I can continue the story of each car.
+I decided to create this backup as back when I created this I was still in the early stages of my software development studies and was pretty happy where this got to. Instead of the progress getting lost in the primary repo's commit history I thought I'd import that code over to this new repo.
